@@ -1,0 +1,21 @@
+---
+runtime: "shiny"
+output: html_document
+---
+
+## Introduction to Shiny
+
+Please select a name to explore.
+```{r, echo = FALSE}
+textInput(
+  inputId = "name", 
+  label = "Name:", 
+  value = "Gaston")   # change value to your name
+```
+
+Here is a graph of the number of people named `TO DO`.
+
+`TO DO`
+
+`TO DO` was more popular than ever in `TO DO`. So far `TO DO` people have
+been named `TO DO`.

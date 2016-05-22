@@ -1,0 +1,39 @@
+---
+runtime: "shiny"
+output: html_document
+---
+
+## Introduction to Shiny
+
+Please select a name to explore.
+```{r, echo = FALSE}
+textInput(
+  inputId = "name", 
+  label = "Name:", 
+  value = "Gaston")
+```
+
+Here is a graph of the number of people named `r renderText(input$name)`.
+
+```{r echo = FALSE, message = FALSE, warning=FALSE, fig.height=3, fig.width=5}
+library(babynames)
+library(ggplot2)
+
+# subset data inside a reactive object
+# (in this way it is available to render functions)
+names <- reactive({
+  subset(babynames, name == input$name)
+})
+
+renderPlot({
+  ggplot(data = names(), aes(x = year, y = n)) + 
+    geom_line(size = 1, aes(color = sex)) +
+    theme_bw()
+})
+```
+
+`r renderText(input$name)` was more popular than ever in 
+`r renderText(names()$year[which.max(names()$n)])`. 
+
+So far `r renderText(sum(names()$n))` people have
+been named `r renderText(input$name)`.

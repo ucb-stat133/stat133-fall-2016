@@ -1,0 +1,432 @@
+---
+title: "HW03 - Stat 133, Fall 2016, Prof. Sanchez"
+author: "Your Name"
+output: html_document
+---
+
+This assignment has 3 main purposes:
+
+- practicing reading data tables
+- working with data frames, vectors and factors
+- practice basic manipulation of data structures
+- creation of simple graphics with `"ggplot2"`
+
+
+## Data set Camping Tents
+
+Start by practicing reading tables in R. The data for this assignment is in the 
+file `camping-tents.csv` (available in the folder `data/` in the 
+github repository of the course)
+
+Use `download.file()` to download the file 'camping-tents.csv' in your computer.
+You'll have to specify your own destination (`destfile`)
+e.g. in my case I'm specifying: `"~/Downloads/camping-tents.csv"`
+(your `destfile` will probably be different!)
+```{r eval = FALSE}
+download.file(
+  url = 'https://raw.githubusercontent.com/ucb-stat133/stat133-fall-2016/master/data/camping-tents.csv', 
+  destfile = '~/Downloads/camping-tents.csv')
+```
+
+- __Importing A:__ Use `read.csv()` to import `camping-tents.csv` and assign 
+it to an object called `tdf1`
+```{r}
+# import using 'read.csv()'
+
+```
+
+
+- __Importing B:__ Use `read.csv()` to import `camping-tents.csv` and assign 
+it to an object called `tdf2`. In this case, strings must NOT be converted into 
+factors!
+```{r}
+# import using 'read.csv()' without converting strings into factors
+
+```
+
+
+- __Importing Option 3:__ Create a character vector `col_class` with the 
+following classes for the columns (to be used with argument `colClasses`)
+
+| name:     `character`
+| brand:    `character`
+| price:    `numeric`
+| weight:   `numeric`
+| height:   `integer`
+| bestuse:  `factor`
+| seasons:  `factor`
+| capacity: `factor`
+
+Use `read.table()` to import `camping-tents.csv` and assign it to 
+an object called `tdf3`. Pass the vector `col_class` to the argument 
+`colClasses`, and specify the right field separator, and header.
+
+```{r}
+# import using 'read.csv()' specifying `colClasses
+
+```
+
+
+- __Importing Option 4:__ Use `read_csv()` from package `"readr"` to import 
+`camping-tents.csv` and assign it to an object called `tents`.
+Use the argument `col_types` to specify column types:
+
+| name:     `character`
+| brand:    `character`
+| price:    `numeric`
+| weight:   `numeric`
+| height:   `integer`
+| bestuse:  `factor`
+| seasons:  `factor`
+| capacity: `factor`
+
+```{r}
+# import using 'read_csv()'
+
+```
+
+
+-----
+
+## Inspecting data frames
+
+Once you have your data frame `tents`, the next step 
+involves performing a first exploration.
+
+```{r}
+# inspect the data structure of 'tents'
+
+
+# check the class of the object 'tents'
+
+
+# how many rows in the dataset?
+
+
+# how many columns in the dataset?
+
+
+# names of columns
+
+
+# take a look at the first 5 rows
+
+
+# take a look at the last 3 rows
+
+```
+
+
+### Quantitative Variables:
+
+Exploring the quantitative variables
+
+1. `price`
+2. `weight`
+3. `height`
+
+Instead of using the `summary()` function, find functions
+that allow you to get the following summaries for `price`
+
+- minimum value
+- first quartile (i.e. 25th percentile)
+- third quartile (i.e. 75th percentile)
+- 90th percentile
+- median value (i.e. 50th percentile)
+- mean value
+- maximum value
+- inter-quartile range (IQR)
+- standard deviation
+
+```{r}
+# your code
+
+```
+
+
+Add a new variable `weight_lbs` to the data frame `tents` for weight in pounds.
+Keep in mind that `weight` is given in grams.
+```{r}
+# add weight_lbs
+
+```
+
+Add a new variable `height_in` to the data frame `tents` for height in inches.
+Keep in mind that `height` is given in centimeters.
+```{r}
+# add height_in
+
+```
+
+Write R code (using bracket notation) to answer the following questions:
+```{r}
+# how many tents have a price greater than $400
+
+
+# how many tents have a price less than or equal to $300
+
+
+# how many tents have a price between $300 and $400
+# (including both $300 and $400 prices)
+
+
+
+# what's the name of the tent with maximum price
+
+
+# what's the name of the tent with minimum price
+
+
+# what's the name of the tent with maximum weight
+
+
+# what's the name of the tent with minimum weight
+
+
+# select the data of tents with 
+# price > $400 AND weight < 1500 grams
+
+
+
+
+# calculate the 90th percentile for height and 
+# assign it to the object 'height_p90'
+
+
+# calculate the 90th percentile for weight and 
+# assign it to the object 'weight_p90'
+
+
+# select the data of tents with 
+# height > height_p90 AND weight > weight_p90
+
+```
+
+
+-----
+
+## More Manipulations
+
+Use `subset()` to obtain a new data frame called `rei` containing the data of 
+those tents with brand `'rei'`; and inspect its dimension:
+```{r}
+# rei data frame
+
+```
+
+
+Use the `cut()` function to create a factor `price_cut` from all the tent 
+prices; for the argument `breaks` give a vector of cutting points
+such that the obtained levels are as follows:
+```
+  (0, 100]
+(100, 200]
+(200, 300]
+(300, 400]
+(400, 500]
+(500, 600]
+(600, 700]
+```
+
+```{r}
+# your price_cut factor
+
+```
+
+Use `table()` to check the obtained frequencies of `price_cut`
+```{r}
+# confirm your frequencies with `table()`
+
+```
+
+
+Use `cut()` to create a factor `weight_cut` by using the
+breaking points and labels according to the following table:
+```
+-----------------------
+     intervals | labels
+---------------|-------
+     (0, 1000] |  1kg
+  (1000, 2000] |  2kg
+  (2000, 3000] |  3kg
+  (3000, 4000] |  4kg
+  (4000, 5000] |  5kg
+  (5000, 6000] |  6kg
+  (6000, 7000] |  7kg
+  (7000, 8000] |  8kg
+  (8000, 9000] |  9kg
+----------------------
+```
+
+```{r}
+# your weight_cut factor
+
+```
+
+Verify that the frequencies given by `table(weight_cut)` are:
+```
+ 1kg 2kg 3kg 4kg 5kg 6kg 7kg 8kg 9kg 
+   3  24  30   7   7   2   9   3   3 
+```
+
+```{r}
+# your verification
+
+```
+
+
+-----
+
+## Statistical graphics of Quantitative Variables
+
+Use `"ggplot2"` to obtain the following plots for each quantitative variable: 
+(look at each graphic carefully and see what types 
+of distribution patterns show each variable)
+
+- histogram
+- boxplot
+- density curve
+
+```{r}
+# your plots
+
+```
+
+
+### Scatter diagrams
+
+Obtain scatter plots of:
+
+- price, height
+- price, weight
+- height, weight
+
+```{r}
+# your scatter diagrams
+
+```
+
+
+
+### Plot challenge
+
+Here's a small challenge: Obtain a scatter plot of `weight` and `height` 
+such that:
+
+- label of x-axis is: `Weight (in grams)`
+- label of y-axis is: `Height (in csm)`
+- Points are colored with alpha transparency `alpha = 0.7`
+- The symbol of points are filled triangles
+- x-axis ranges from 0 to 10000
+- y-axis ranges from 80 to 220
+- Include a title
+
+```{r}
+# your scatter plot
+
+```
+
+
+-----
+
+## Statistical graphics of Qualitative Variables
+
+Now let's focus on the qualitative variables:
+
+1. `brand`
+2. `bestuse`
+3. `seasons`
+4. `capacity`
+
+```{r}
+# get frequency tables of each qualitative variable
+
+
+# what is the brand with less number of tents
+
+
+# are there any tents of brand 'rei'?
+# and if so, how many?
+
+
+# are there any tents of brand 'mountain-hardwear'
+# and if so, how many?
+
+
+# how many 'rei' tents are intended to be
+# used ('bestuse') for Mountaineering?
+
+
+# what unique brands have tents intended to be used for 'Mountaineering'
+
+
+```
+
+
+### Plot challenge: 
+
+Make a barplot for 'brand' such that:
+
+- bars are horizontally oriented
+- bars are arranged in decreasing order
+- brand labels are perpendicular to the y-axis
+  (i.e. labels horizontally oriented)
+- modify margins in order to have enough room for labels 
+- x-axis ranges from 0 to 25
+- include a title
+
+```{r}
+# your bar-chart
+
+```
+
+
+### Bivariate Plots
+
+Use `geom_boxplot()` to plot the distribution of `weight` conditional to:
+(get a boxplot for each categorical variable)
+
+- brand
+- bestuse
+- capacity
+- seasons
+
+```{r}
+# your boxplots
+
+```
+
+
+Make a scatter-plot of `height` and `weight`, using 
+`capacity` as a factor for the color argument
+```{r}
+# scatter-plot of `height` and `weight` (color `capacity`)
+
+```
+
+Get the same scatter plot as above but now pass `bestuse`
+as a factor for the color argument
+```{r}
+# scatter-plot of `height` and `weight` (color `bestuse`)
+
+```
+
+
+
+### Plot challenge
+
+Obtain a new data frame called `big_agnes` by subsetting tents of brand 
+`'big-agnes'`. Then, use this data frame to make a scatter plot of `weight` 
+and `height`:
+
+- The background of the entire plot must be white
+- Instead of points, show the name of each big-agnes tent
+- Set the color attribute based on `bestuse`
+- Include a title
+
+```{r}
+# scatter-plot using `big_agnes` data frame
+
+```
+
+
