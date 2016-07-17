@@ -7,23 +7,22 @@ output: html_document
 The purpose of this assignment is to work with vectors of different
 data types: numeric (integer and real), character, logical, as well as factors.
 
+Download this file or open an `Rmd` file in RStudio and copy the
+contents of this file.
+
 
 ## Data
 
-The data for this assignment is `cereals.RData`.
+The data for this assignment is in the `cereals.RData` file, 
+located in the github repository (this file is in binary format). 
 
-Start a new session in RStudio, and make sure there's no 
-saved objects:
+Start a new session in RStudio, and make sure there's no saved objects:
 ```{r eval = FALSE}
 rm(list = ls())
 ```
 
-Use the following code to read the data contained in the file 
-`cereals.RData` (from the github repository)
+Use the following code to read the data from the github repository:
 ```r
-# Start a new R session, and clean any existing objects
-rm(list = ls())
-
 # download RData file into your working directory
 rdata <- "https://github.com/ucb-stat133/stat133-fall-2016/raw/master/data/cereals.RData"
 download.file(url = rdata, destfile = 'cereals.RData')

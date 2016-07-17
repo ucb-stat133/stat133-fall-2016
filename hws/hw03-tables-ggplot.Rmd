@@ -11,6 +11,9 @@ This assignment has 3 main purposes:
 - practice basic manipulation of data structures
 - creation of simple graphics with `"ggplot2"`
 
+Download this file or open an `Rmd` file in RStudio and copy the
+contents of this file.
+
 
 ## Data set Camping Tents
 
@@ -18,7 +21,7 @@ Start by practicing reading tables in R. The data for this assignment is in the
 file `camping-tents.csv` (available in the folder `data/` in the 
 github repository of the course)
 
-Use `download.file()` to download the file 'camping-tents.csv' in your computer.
+Use `download.file()` to download the file `camping-tents.csv` in your computer.
 You'll have to specify your own destination (`destfile`)
 e.g. in my case I'm specifying: `"~/Downloads/camping-tents.csv"`
 (your `destfile` will probably be different!)
@@ -47,15 +50,14 @@ factors!
 
 - __Importing Option 3:__ Create a character vector `col_class` with the 
 following classes for the columns (to be used with argument `colClasses`)
-
-| name:     `character`
-| brand:    `character`
-| price:    `numeric`
-| weight:   `numeric`
-| height:   `integer`
-| bestuse:  `factor`
-| seasons:  `factor`
-| capacity: `factor`
+  - name:     `character`
+  - brand:    `character`
+  - price:    `numeric`
+  - weight:   `numeric`
+  - height:   `integer`
+  - bestuse:  `factor`
+  - seasons:  `factor`
+  - capacity: `factor`
 
 Use `read.table()` to import `camping-tents.csv` and assign it to 
 an object called `tdf3`. Pass the vector `col_class` to the argument 
@@ -70,15 +72,15 @@ an object called `tdf3`. Pass the vector `col_class` to the argument
 - __Importing Option 4:__ Use `read_csv()` from package `"readr"` to import 
 `camping-tents.csv` and assign it to an object called `tents`.
 Use the argument `col_types` to specify column types:
+  - name:     `character`
+  - brand:    `character`
+  - price:    `numeric`
+  - weight:   `numeric`
+  - height:   `integer`
+  - bestuse:  `factor`
+  - seasons:  `factor`
+  - capacity: `factor`
 
-| name:     `character`
-| brand:    `character`
-| price:    `numeric`
-| weight:   `numeric`
-| height:   `integer`
-| bestuse:  `factor`
-| seasons:  `factor`
-| capacity: `factor`
 
 ```{r}
 # import using 'read_csv()'
