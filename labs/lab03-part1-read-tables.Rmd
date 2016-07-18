@@ -1,5 +1,6 @@
 ---
-title: "Lab 3 - Stat 133, Fall 2016"
+title: "Lab 3: Reading Data Tables"
+subtitle: "Stat 133, Fall 2016"
 author: "Gaston Sanchez"
 header-includes: \usepackage{float}
 output: html_document
@@ -33,7 +34,7 @@ We will talk about the following functions (and packages)
 - `read.fwf()`
 - R package "readr"
 - `readHTMLTable()` from package "XML"
-- Packages to read data set from other software programs
+- Packages to read data sets from other software programs
 
 -----
 
@@ -59,14 +60,15 @@ the following questions:
 One basic way to read this file in R, is by passing the url location of the 
 file directly to any of the `read.table()` functions:
 ```r
-abalone <- read.table("http://archive.ics.uci.edu/ml/machine-learning-databases/abalone/abalone.data", sep = ",")
+url <- "http://archive.ics.uci.edu/ml/machine-learning-databases/abalone/abalone.data"
+abalone <- read.table(url, sep = ",")
 ```
 
 ### Getting a Local Copy of the Data
 
 My suggestion when reading datasets from the Web, is to always try to get a local
 copy of the data file in your machine (as long as you have enough free space
-to save it in your computer). To do this, you can use `download.file()`
+to save it in your computer). To do this, you can use the function `download.file()`
 and specify the url address, and the name of the file that will be created in
 your computer. For instance, to save the abalone data file in your working 
 directory, type the following commands:
@@ -173,7 +175,7 @@ str(abalone, vec.len = 1)
 - Look at the data description [http://archive.ics.uci.edu/ml/machine-learning-databases/abalone/abalone.names](http://archive.ics.uci.edu/ml/machine-learning-databases/abalone/abalone.names) and confirm the following statistics:
 
 ```
-       Length Diam  Height  Whole  Shucked  Viscera  Shell   Rings
+       Length Diam  Height  Whole  Shucked  Viscera    Shell    Rings
 Min	   0.075  0.055	0.000   0.002	 0.001    0.001	   0.002	    1
 Max	   0.815  0.650	1.130   2.826	 1.488    0.760	   1.005	   29
 Mean   0.524  0.408	0.140   0.829	 0.359    0.181	   0.239	9.934
