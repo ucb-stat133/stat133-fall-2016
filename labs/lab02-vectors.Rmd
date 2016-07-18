@@ -1,5 +1,6 @@
 ---
-title: "Lab 2 - Stat 133, Fall 2016"
+title: "Lab 2: Vectors and other data structures"
+subtitle: "Stat 133, Fall 2016"
 author: "Gaston Sanchez"
 header-includes: \usepackage{float}
 output: html_document
