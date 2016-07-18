@@ -1,5 +1,6 @@
 ---
-title: "Lab 1 - Stat 133, Fall 2016"
+title: "Lab 1: Getting started with R"
+subtitle: "Stat 133, Fall 2016"
 author: "Gaston Sanchez"
 header-includes: \usepackage{float}
 output: html_document
@@ -29,7 +30,7 @@ output: html_document
 	- R-GUI is a simply graphical user interface
 	- RStudio is an _Integrated Development Environment_ (IDE)
 		- It is much more than a simple GUI
-		- It provides a nice working environment framework
+		- It provides a nice working environment and development framework
 - We are going to use mainly RStudio
 
 -----
@@ -96,7 +97,7 @@ Any code to the right of `#` will not be executed by R.
 
 R is more powerful than a calculator, and you can do many more things than
 practically most scientific calculators. One of the things you will be
-doing a lot in R is creating variables or objects that store values.
+doing a lot in R is creating variables or objects to store values.
 
 For instance, you can create a variable `x` and give it the value of 1.
 This is done using what is known as the __assignment operator__ `<-`,
