@@ -1,0 +1,46 @@
+---
+title: "HW04 - Data manipulation with dplyr"
+subtitle: "Stat 133, Fall 2016, Prof. Sanchez"
+author: "Your Name"
+output: html_document
+---
+
+The main purposes of this assignment are:
+
+- practice manipulating data frames with `"dplyr"`
+- practice plotting with `"ggplot2"`
+
+Download this file or open an `Rmd` file in RStudio and copy the
+contents of this file.
+
+
+## Bay Area Bike Accidents
+
+Get a copy of the data set `bike-accidents.csv` from the course's github 
+repo.
+
+
+### Exploring one single variable
+
+Use `"dplyr"` to find the following information (store the results in separated
+data frames so you can use them later with `ggplot()`):
+
+- Number of accidents per County
+- Number of accidents per Month
+- Number of accidents per Hour
+
+Use `ggplot()` to get: 
+
+- a bar chart (in decreasing order) of the number of accidents per County.
+- a bar chart of the number of accidents per Month (months must be arrange
+in the way they appear in the calendar: Jan, Feb, Mar, etc.)
+- a line chart of the number of accidents per Hour.
+
+
+### Exploring two variables
+
+Use `"dplyr"` to find the following information (store the results in separated
+data frames so you can use them later with `ggplot()`):
+
+- Number of accidents per Month, by County
+- Number of accidents per Hour, by Month
