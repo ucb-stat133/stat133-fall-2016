@@ -1,5 +1,6 @@
 ---
-title: "HW03 - Stat 133, Fall 2016, Prof. Sanchez"
+title: "HW03 - Data tables and graphics"
+subtitle: "Stat 133, Fall 2016, Prof. Sanchez"
 author: "Your Name"
 output: html_document
 ---
