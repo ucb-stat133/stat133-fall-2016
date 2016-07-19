@@ -1,5 +1,6 @@
 ---
-title: "HW02 - Stat 133, Fall 2016, Prof. Sanchez"
+title: "HW02 - Basic data types and vectors"
+subtitle: "Stat 133, Fall 2016, Prof. Sanchez"
 author: "Your Name"
 output: html_document
 ---
