@@ -4,7 +4,7 @@ author: "Your Name"
 output: html_document
 ---
 
-This assignment has 3 main purposes:
+This assignment has 4 main purposes:
 
 - practicing reading data tables
 - working with data frames, vectors and factors
