@@ -1,0 +1,216 @@
+---
+title: "Lab 4: Intro to shiny documents"
+subtitle: "Stat 133, Fall 2016"
+author: "Gaston Sanchez"
+output: html_document
+---
+
+
+> ### Learning Objectives
+>
+> - First contact with the R package "shiny"
+> - What is shiny?
+> - Understanding the concept of reactive elements
+> - Creating Dynamic Plots
+
+
+We'll work with the [babynames](https://github.com/hadley/babynames) data to 
+visualize how your name (or other names) have changed over time in the USA.
+
+Install the R package `babynames` (by Hadley Wickham) either from CRAN or 
+from its github repo:
+```r
+# you may need to install "devtools""
+install.packages("devtools")
+library(devtools)
+
+# install "babynames"
+install_github("babynames", "hadley")
+```
+
+Now load these packages:
+```{r, message=FALSE}
+library(babynames)
+library(ggplot2)
+```
+
+The data set `babynames` has `r nrow(babynames)` rows and `r ncol(babynames)`
+columns. Column names are:
+
+- `year`: calendar year (from 1880 to 2014)
+- `sex`: sex of name
+- `name`: name 
+- `n`: number of babies with given `name`
+- `prop`: proportion (or frequency)
+
+
+In order to make a timeline plot with the trend for your name, 
+it's better to subset `babynames` with just the relevant values:
+```{r}
+me <- 'Gaston'   # change this value!
+mynames <- subset(babynames, name == me)
+```
+
+
+### Timeline Plot
+
+Once we have the required subset, we can plot a timeline trend: 
+```{r}
+ggplot(data = mynames, aes(x = year, y = n)) +
+  geom_line(size = 1)
+```
+
+Because some names appear in both males and females, we can add color based on
+sex:
+```{r}
+ggplot(data = mynames, aes(x = year, y = n)) +
+  geom_line(size = 1, aes(color = sex))
+```
+
+
+- Find how many people have been named like you
+- Find the year in which your name was the most popular
+
+```{r}
+# number of people named like you
+sum(mynames$n)
+
+# most popular year
+mynames$year[which.max(mynames$n)]
+```
+
+My name was more popular than ever in `r mynames$year[which.max(mynames$n)]`.
+So far, `r sum(mynames$n)` have been named `r me`.
+
+-----
+
+
+## Getting Started with Shiny
+
+__"shiny"__ is an R package that does two things:
+
+1. Creates __Reactive__ objects
+2. Build HTML web pages
+
+Perhaps the most popular use of shiny is for creating Web Apps, commonly known
+as "shiny apps". You can take a look at some examples of shiny apps at:
+[http://shiny.rstudio.com/gallery](http://shiny.rstudio.com/gallery) 
+
+Right now we won't be using shiny to create a web app (we'll do that at the
+end of the course). Instead, we are going to see how to use shiny to work 
+with __reactive objects__ and create a document with dynamic plots (not 
+exactly interactive plots, but close enough).
+
+
+### Shiny Interactive Document
+
+We'll generate an interactive document editing an Rmarkdown (.Rmd) file and 
+using shiny. To open an interactive document in RStudio:
+
+1. Go to __File__, click __New File__, then choose __R Markdown...__
+2. Select __Shiny__, then __Shiny Document (default)__
+3. Delete everything under the second `---`
+
+In the Rmd file make sure you have the following _yaml_ header (you may include 
+an optional title):
+
+```bash
+---
+runtime: shiny
+output: html_document
+---
+
+## What's in a name?
+```
+
+### Reactivity 101
+
+There are two main types of reactive objects in shiny:
+
+- __Widgets__: let users set a value by typing, clicking, scrolling, etc.
+- __Rendered__: respond whenever a widget value changes
+
+The first thing to do is to include a widget that allows you to type some text 
+(your name). Use the __textInput()__ widget inside a code chunk:
+
+~~~ 
+```r
+# change the value to your name
+textInput(inputId = "name", label = "Name:", value = "Gaston")
+```
+~~~
+
+Your widget saves a value in R that you can call with `input$<inputId>`.
+For example, let's say you have a `textInput` widget with the following call:
+`textInput(inputId = "name", label = "Name:", value = "Gaston")`.
+You would call the value of this widget with `input$name`.
+
+The nice thing about widgets is that a its value changes whenever a user changes the widget.
+
+You have to be very careful with widgets: You CANNOT call a widget value with 
+a normal R function. For instance,  if you try to count the number of characters
+in `input$name` doing something like this `nchar(input$name)`, Shiny won't let 
+you.
+
+To create a widget you'll have to use widget functions. The table below lists
+the available widgets functions in shiny:
+
+| Function        | Widget                                     |
+| --------------- | ------------------------------------------ |
+| `actionButton()`   | Action Button                              |
+| `checkboxGroupIn()` | Group of checkboxes                        |
+| `checkboxInput()`   | Single checkbox                            |
+| `dateInput()`       | Calendar to aid date selection             |
+| `dateRangeInput()`  | Pair of calendars for selecting date range |
+| `fileInput()`       | File upload control wizard                 |
+| `helpText()`        | Help text to accompany other widgets       |
+| `numericInput()`    | Field to enter numbers                     |
+| `radioButtons()`    | Set of radio buttons                       |
+| `selectInput()`     | Box with choices to select from            |
+| `sliderInput()`     | Slide bar                                  |
+| `submitButton()`    | Submit button                              |
+| `textInput()`       | Field to enter text                        |
+
+More info about widgets at: [Shiny Widgets Gallery](http://shiny.rstudio.com/gallery/widget-gallery.html)
+
+
+
+### Reactive expressions
+
+The way to manipulate a reactive value (like `input$name`) is to use it 
+within a __render function__. 
+For instance, to be able to display your name, you need to pass `input$name` 
+to the function `renderText()` like so:
+```r
+`renderText(input$name)`
+```
+
+Or include `renderText(nchar(input$name))` in an inline code chunk.
+
+Below is a list with the available render functions in Shiny:
+
+| Function            | Creates       |
+| ------------------- | ----------------- |
+| `renderDataTable()` |	An interactive table |
+| `renderImage()`     |	An image (saved as a link to a source file) |
+| `renderPlot()`      |	A plot            |
+| `renderPrint()`     |	A code block of printed output |
+| `renderTable()`     |	A table            |
+| `renderText()`      |	A character string |
+
+
+### Your Turn
+
+Work on the file `lab04-shiny-doc-raw.Rmd` (located in the `docs/` directory 
+of the github repo of the course) to create a shiny document. You
+should be able to input your name, and then see the produced plot with the 
+line trend of your name, what was the most popular year, and how many people
+have been named like you.
+
+If you get stuck on a specific part, try to solve it first, ask the GSI, 
+ask your neighbor, or google it. If you give up, then take a peek at the 
+solutions in `lab04-shiny-doc-final.Rmd` (located also in the `docs/`
+directory of the course github's repo)
+
+-----
+
