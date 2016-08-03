@@ -56,8 +56,8 @@ Confirm that you have the following objects:
 
 ### Inspecting the data objects
 
-Once you have some data objects to work with, the first step is to perform
-an inspection of their characteristics. R has a handful of functions that
+Once you have some data objects to work with, the first step is to
+inspect some of their characteristics. R has a handful of functions that
 allows you to examine objects: 
 
 - `typeof()` type of storage of any object
@@ -104,7 +104,7 @@ typeof(water)
 ## Manipulating Vectors: Subsetting
 
 Subsetting refers to extracting elements of a vector (or another R object). 
-To do so, you use what is known __bracket notation__. This implies using 
+To do so, you use what is known as __bracket notation__. This implies using 
 (square) brackets `[ ]` to get access to the elements of a vector:
 ```r
 # first element of 'state'
