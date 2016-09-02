@@ -68,7 +68,7 @@ Inside the parenthesis you pass an input. Most functions will produce some
 type of output:
 ```r
 # absolute value
-abs(10
+abs(10)
 abs(-4)
 
 # square root
@@ -80,7 +80,7 @@ log(2)
 
 ### Comments in R
 
-All programming languages use a set of characters to indicate that a 
+All programming languages use a set of characters to indicate that a
 specifc part or lines of code are __comments__, that is, things that are
 not to be executed. R uses the hash or pound symbol `#` to specify comments.
 Any code to the right of `#` will not be executed by R.
@@ -242,7 +242,7 @@ by the name of the function:
 
 `help()` only works if you know the name of the function your are looking for.
 Sometimes, however, you don't know the name but you may know some keywords.
-To look for related functions associated to a keyword, use double 
+To look for related functions associated to a keyword, use double
 `help.search()` or simply `??`
 ```r
 # search for 'absolute'
@@ -261,7 +261,7 @@ of functions that have been designed for a specific purpose. One of the great
 advantages of R is that many analysts, scientists, programmers, and users
 can create their own pacakages and make them available for everybody to use them.
 R packages can be shared in different ways. The most common way to share a
-package is to submit it to what is known as __CRAN__, the 
+package is to submit it to what is known as __CRAN__, the
 _Comprehensive R Archive Network_.
 
 You can install a package using the `install.packages()` function.
@@ -309,7 +309,7 @@ In the menu bar of RStudio, click on __File__, then __New File__,
 and choose __R Markdown__. Select the default option (Document),
 and click __Ok__.
 
-__Rmd__ files are a special type of file, referred to as a _dynamic document_, 
+__Rmd__ files are a special type of file, referred to as a _dynamic document_,
 that allows to combine narrative (text) with R code. Because you will
 be turning in most homework assignments as `Rmd` files, it is important
 that you quickly become familiar with this resource.
@@ -320,8 +320,8 @@ so you can see how `Rmd` files are renderer and displayed as HTML documents.
 
 ### Yet Another Syntax to Learn
 
-R markdown (`Rmd`) files use [markdown](https://daringfireball.net/projects/markdown/) 
-as the main syntax to write content. It is a very lightweight type of 
+R markdown (`Rmd`) files use [markdown](https://daringfireball.net/projects/markdown/)
+as the main syntax to write content. It is a very lightweight type of
 markup language, and it is relatively easy to learn.
 
 
@@ -330,8 +330,11 @@ markup language, and it is relatively easy to learn.
 Work through the markdown tutorial:
 [www.markdown-tutorial.com](http://www.markdown-tutorial.com)
 
-Your turn: After lab discussion, find some time to go through this 
+Your turn: After lab discussion, find some time to go through this
 additional markdown tutorial
 [www.markdowntutorial.com/](http://www.markdowntutorial.com/)
+
+RStudio has a very comprehensive R Markdown tutorial:
+[Rstudio markdown tutorial](http://rmarkdown.rstudio.com/)
 
 -----
