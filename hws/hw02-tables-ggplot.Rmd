@@ -1,5 +1,5 @@
 ---
-title: "HW03 - Data tables and graphics"
+title: "HW02 - Data tables and graphics"
 subtitle: "Stat 133, Fall 2016, Prof. Sanchez"
 author: "Your Name"
 output: html_document
@@ -62,7 +62,7 @@ following classes for the columns (to be used with argument `colClasses`)
 
 Use `read.table()` to import `camping-tents.csv` and assign it to 
 an object called `tdf3`. Pass the vector `col_class` to the argument 
-`colClasses`, and specify the right field separator, and header.
+`colClasses`, and specify the apropriate field separator, and header.
 
 ```{r}
 # import using 'read.csv()' specifying `colClasses
@@ -100,16 +100,7 @@ involves performing a first exploration.
 # inspect the data structure of 'tents'
 
 
-# check the class of the object 'tents'
-
-
-# how many rows in the dataset?
-
-
-# how many columns in the dataset?
-
-
-# names of columns
+# display the names of columns in 'tents'
 
 
 # take a look at the first 5 rows
@@ -122,14 +113,8 @@ involves performing a first exploration.
 
 ### Quantitative Variables:
 
-Exploring the quantitative variables
-
-1. `price`
-2. `weight`
-3. `height`
-
-Instead of using the `summary()` function, find functions
-that allow you to get the following summaries for `price`
+Exploring the quantitative variables. Instead of using the `summary()` function, 
+find functions that allow you to get the following summaries for `price`
 
 - minimum value
 - first quartile (i.e. 25th percentile)
@@ -163,9 +148,6 @@ Keep in mind that `height` is given in centimeters.
 
 Write R code (using bracket notation) to answer the following questions:
 ```{r}
-# how many tents have a price greater than $400
-
-
 # how many tents have a price less than or equal to $300
 
 
@@ -173,22 +155,11 @@ Write R code (using bracket notation) to answer the following questions:
 # (including both $300 and $400 prices)
 
 
-
 # what's the name of the tent with maximum price
-
-
-# what's the name of the tent with minimum price
-
-
-# what's the name of the tent with maximum weight
-
-
-# what's the name of the tent with minimum weight
 
 
 # select the data of tents with 
 # price > $400 AND weight < 1500 grams
-
 
 
 
@@ -214,31 +185,6 @@ Use `subset()` to obtain a new data frame called `rei` containing the data of
 those tents with brand `'rei'`; and inspect its dimension:
 ```{r}
 # rei data frame
-
-```
-
-
-Use the `cut()` function to create a factor `price_cut` from all the tent 
-prices; for the argument `breaks` give a vector of cutting points
-such that the obtained levels are as follows:
-```
-  (0, 100]
-(100, 200]
-(200, 300]
-(300, 400]
-(400, 500]
-(500, 600]
-(600, 700]
-```
-
-```{r}
-# your price_cut factor
-
-```
-
-Use `table()` to check the obtained frequencies of `price_cut`
-```{r}
-# confirm your frequencies with `table()`
 
 ```
 
@@ -282,7 +228,7 @@ Verify that the frequencies given by `table(weight_cut)` are:
 
 ## Statistical graphics of Quantitative Variables
 
-Use `"ggplot2"` to obtain the following plots for each quantitative variable: 
+Use `"ggplot2"` to obtain the following plots for variable `price`: 
 (look at each graphic carefully and see what types 
 of distribution patterns show each variable)
 
@@ -296,21 +242,6 @@ of distribution patterns show each variable)
 ```
 
 
-### Scatter diagrams
-
-Obtain scatter plots of:
-
-- price, height
-- price, weight
-- height, weight
-
-```{r}
-# your scatter diagrams
-
-```
-
-
-
 ### Plot challenge
 
 Here's a small challenge: Obtain a scatter plot of `weight` and `height` 
@@ -318,7 +249,8 @@ such that:
 
 - label of x-axis is: `Weight (in grams)`
 - label of y-axis is: `Height (in csm)`
-- Points are colored with alpha transparency `alpha = 0.7`
+- use `bestuse` as a factor for the color argument
+- Add alpha transparency `alpha = 0.7` to the color of the points
 - The symbol of points are filled triangles
 - x-axis ranges from 0 to 10000
 - y-axis ranges from 80 to 220
@@ -342,9 +274,6 @@ Now let's focus on the qualitative variables:
 4. `capacity`
 
 ```{r}
-# get frequency tables of each qualitative variable
-
-
 # what is the brand with less number of tents
 
 
@@ -392,7 +321,6 @@ Use `geom_boxplot()` to plot the distribution of `weight` conditional to:
 - brand
 - bestuse
 - capacity
-- seasons
 
 ```{r}
 # your boxplots
@@ -404,31 +332,6 @@ Make a scatter-plot of `height` and `weight`, using
 `capacity` as a factor for the color argument
 ```{r}
 # scatter-plot of `height` and `weight` (color `capacity`)
-
-```
-
-Get the same scatter plot as above but now pass `bestuse`
-as a factor for the color argument
-```{r}
-# scatter-plot of `height` and `weight` (color `bestuse`)
-
-```
-
-
-
-### Plot challenge
-
-Obtain a new data frame called `big_agnes` by subsetting tents of brand 
-`'big-agnes'`. Then, use this data frame to make a scatter plot of `weight` 
-and `height`:
-
-- The background of the entire plot must be white
-- Instead of points, show the name of each big-agnes tent
-- Set the color attribute based on `bestuse`
-- Include a title
-
-```{r}
-# scatter-plot using `big_agnes` data frame
 
 ```
 
