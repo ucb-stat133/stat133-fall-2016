@@ -10,7 +10,6 @@ This assignment has 4 main purposes:
 - practicing reading data tables
 - working with data frames, vectors and factors
 - practice basic manipulation of data structures
-- creation of simple graphics with `"ggplot2"`
 
 Download this file or open an `Rmd` file in RStudio and copy the
 contents of this file.
@@ -224,115 +223,27 @@ Verify that the frequencies given by `table(weight_cut)` are:
 ```
 
 
------
+### Reordering a factor
 
-## Statistical graphics of Quantitative Variables
-
-Use `"ggplot2"` to obtain the following plots for variable `price`: 
-(look at each graphic carefully and see what types 
-of distribution patterns show each variable)
-
-- histogram
-- boxplot
-- density curve
-
-```{r}
-# your plots
-
+The variable `seasons` is a factor with three `levels`. You can use functions
+such as `summary()`, `nlevels()`, and `is.ordered()` to inspect any R factor
+object. In particular, you can explore the column `seasons`
+```{r eval = FALSE}
+summary(tents$seasons)
+nlevels(tents$seasons)
+is.ordered(tents$seasons)
 ```
 
-
-### Plot challenge
-
-Here's a small challenge: Obtain a scatter plot of `weight` and `height` 
-such that:
-
-- label of x-axis is: `Weight (in grams)`
-- label of y-axis is: `Height (in csm)`
-- use `bestuse` as a factor for the color argument
-- Add alpha transparency `alpha = 0.7` to the color of the points
-- The symbol of points are filled triangles
-- x-axis ranges from 0 to 10000
-- y-axis ranges from 80 to 220
-- Include a title
+Originally, `seasons` is NOT an ordinal factor.
+Find out how to use the `factor()` function in order to convert `seasons`
+as an ordinal factor. The resulting levels should be `3-season`, `3-4-season`,
+and `4-season` (in this order!). Furthermore, if you execute the command
+`is.ordered(tents$seasons)` the answer should be `TRUE`.
 
 ```{r}
-# your scatter plot
+# order the variable 'seasons'
 
 ```
-
 
 -----
-
-## Statistical graphics of Qualitative Variables
-
-Now let's focus on the qualitative variables:
-
-1. `brand`
-2. `bestuse`
-3. `seasons`
-4. `capacity`
-
-```{r}
-# what is the brand with less number of tents
-
-
-# are there any tents of brand 'rei'?
-# and if so, how many?
-
-
-# are there any tents of brand 'mountain-hardwear'
-# and if so, how many?
-
-
-# how many 'rei' tents are intended to be
-# used ('bestuse') for Mountaineering?
-
-
-# what unique brands have tents intended to be used for 'Mountaineering'
-
-
-```
-
-
-### Plot challenge: 
-
-Make a barplot for 'brand' such that:
-
-- bars are horizontally oriented
-- bars are arranged in decreasing order
-- brand labels are perpendicular to the y-axis
-  (i.e. labels horizontally oriented)
-- modify margins in order to have enough room for labels 
-- x-axis ranges from 0 to 25
-- include a title
-
-```{r}
-# your bar-chart
-
-```
-
-
-### Bivariate Plots
-
-Use `geom_boxplot()` to plot the distribution of `weight` conditional to:
-(get a boxplot for each categorical variable)
-
-- brand
-- bestuse
-- capacity
-
-```{r}
-# your boxplots
-
-```
-
-
-Make a scatter-plot of `height` and `weight`, using 
-`capacity` as a factor for the color argument
-```{r}
-# scatter-plot of `height` and `weight` (color `capacity`)
-
-```
-
 
