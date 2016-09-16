@@ -14,6 +14,23 @@ This assignment has 4 main purposes:
 Download this file or open an `Rmd` file in RStudio and copy the
 contents of this file.
 
+You need to change the directory `wd_root` to be **your preferred local** 
+directory
+
+```{r global_options, warning=FALSE}
+# Change wd_root to be your preferred local directory
+wd_root <- "~/Downloads"
+
+# Load knitr and set global directory
+library(knitr)
+
+# Set the global working directory for knitr
+knitr::opts_knit$set(root.dir = wd_root)
+
+# You can uncomment the following line if you need to 
+# run R code manually in RStudio rather than using knitr
+# setwd(wd_root)
+```
 
 ## Data set Camping Tents
 
@@ -25,7 +42,7 @@ Use `download.file()` to download the file `camping-tents.csv` in your computer.
 You'll have to specify your own destination (`destfile`)
 e.g. in my case I'm specifying: `"~/Downloads/camping-tents.csv"`
 (your `destfile` will probably be different!)
-```{r eval = FALSE}
+```{r, cache=TRUE}
 download.file(
   url = 'https://raw.githubusercontent.com/ucb-stat133/stat133-fall-2016/master/data/camping-tents.csv', 
   destfile = '~/Downloads/camping-tents.csv')
@@ -35,7 +52,6 @@ download.file(
 it to an object called `tdf1`
 ```{r}
 # import using 'read.csv()'
-
 ```
 
 
@@ -44,7 +60,6 @@ it to an object called `tdf2`. In this case, strings must NOT be converted into
 factors!
 ```{r}
 # import using 'read.csv()' without converting strings into factors
-
 ```
 
 
