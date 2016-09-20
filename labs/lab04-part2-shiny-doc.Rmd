@@ -1,5 +1,5 @@
 ---
-title: "Lab 4: Intro to shiny documents"
+title: "Lab 99: Intro to shiny documents"
 subtitle: "Stat 133, Fall 2016"
 author: "Gaston Sanchez"
 output: html_document
@@ -29,7 +29,7 @@ install_github("babynames", "hadley")
 ```
 
 Now load these packages:
-```{r, message=FALSE}
+```{r, message=FALSE, warning=FALSE}
 library(babynames)
 library(ggplot2)
 ```
@@ -54,14 +54,14 @@ mynames <- subset(babynames, name == me)
 
 ### Timeline Plot
 
-Once we have the required subset, we can plot a timeline trend: 
+Once we have the required subset, we can use `ggplot()` to graph a timeline trend: 
 ```{r}
 ggplot(data = mynames, aes(x = year, y = n)) +
   geom_line(size = 1)
 ```
 
-Because some names appear in both males and females, we can add color based on
-sex:
+Because some names appear in both males and females, we can add color to the 
+line(s) based on sex:
 ```{r}
 ggplot(data = mynames, aes(x = year, y = n)) +
   geom_line(size = 1, aes(color = sex))
