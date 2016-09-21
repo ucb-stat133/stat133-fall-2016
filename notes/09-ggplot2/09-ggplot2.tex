@@ -1,0 +1,1745 @@
+\documentclass[12pt]{beamer}\usepackage[]{graphicx}\usepackage[]{color}
+%% maxwidth is the original width if it is less than linewidth
+%% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
+\usepackage{graphicx}
+\usepackage{tikz}
+\setbeameroption{hide notes}
+\setbeamertemplate{note page}[plain]
+\usepackage{listings}
+
+\input{../header.tex}
+
+%------------------------------------------------
+% end of header
+%------------------------------------------------
+
+\title{Getting started with ggplot2}
+\subtitle{STAT 133}
+\author{\href{http://www.gastonsanchez.com}{Gaston Sanchez}}
+\institute{\href{https://github.com/ucb-stat133/stat133-fall-2016}{\tt \scriptsize \color{foreground} github.com/ucb-stat133/stat133-fall-2016}}
+\date{}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\begin{document}
+
+
+{
+  \setbeamertemplate{footline}{} % no page number here
+  \frame{
+    \titlepage
+  } 
+}
+
+%------------------------------------------------
+
+\begin{frame}
+\begin{center}
+\Huge{\hilit{ggplot2}}
+\end{center}
+\end{frame}
+
+
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Resources for \code{"ggplot2"}}
+
+\bbi
+  \item Documentation: \url{http://docs.ggplot2.org/} 
+  \item Book: \textbf{ggplot2: Elegant Graphics for Data Analysis} (by Hadley Wickham)
+  \item Book: \textbf{R Graphics Cookbook} (by Winston Chang)
+  \item RStudio ggplot2 cheat sheet \\
+  {\tiny \url{https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf}}
+\ei
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{package \code{"ggplot2"}}
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{# remember to install ggplot2 }
+\hlcom{# (just once)}
+\hlkwd{install.packages}\hlstd{(}\hlstr{"ggplot2"}\hlstd{)}
+
+
+\hlcom{# load ggplot2}
+\hlkwd{library}\hlstd{(ggplot2)}
+
+
+\hlcom{# see basic documentation}
+\hlopt{?}\hlstd{ggplot}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{ggplot2 book}
+\begin{center}
+\ig[width=4.5cm]{images/ggplot2.png}
+\end{center}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{R Graphics Cookbook}
+\begin{center}
+\ig[width=5cm]{images/graphics_cookbook.jpg}
+\end{center}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+
+{\centering \includegraphics[width=.9\linewidth,height=.65\linewidth]{figure/unnamed-chunk-1-1} 
+
+}
+
+
+
+\end{knitrout}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+
+{\centering \includegraphics[width=.9\linewidth,height=.65\linewidth]{figure/unnamed-chunk-2-1} 
+
+}
+
+
+
+\end{knitrout}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{About \code{"ggplot2"}}
+
+\bi
+  \item \code{"ggplot2"} (by Hadley Wickham) is an R package for producing statistical graphics
+  \item It provides a framework based on Leland Wilkinson's \textbf{Grammar of Graphics}
+  \item \code{"ggplot2"} provides beautiful plots while taking care of fiddly details like legends, axes, colors, etc.
+  \item \code{"ggplot2"} is built on the R graphics package \code{"grid"}
+  \item Underlying philosophy is to describe a wide range of graphics with a compact syntax and independent components
+\ei
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{The Grammar of Graphics}
+\begin{center}
+\ig[width=4.5cm]{images/grammar_graphics.jpg}
+\end{center}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{About the Grammar of Graphics}
+
+\bbi
+  \item \textit{The Grammar of Graphics} is Wilkinson's attempt to define a theoretical framework for graphics
+  \item \textbf{Grammar}: Formal system of rules for generating graphics
+  \bi
+    \item Some rules are mathematic
+    \item Some rules are aesthetic
+  \ei
+\ei
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{About the Grammar of Graphics}
+
+\bb{3 Stages of Graphic Creation}
+\bbi
+  \item \textbf{Specification}: link data to graphic objects
+  \item \textbf{Assembly}: put everything together
+  \item \textbf{Display}: render of a graphic
+\ei
+\eb
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{About the Grammar of Graphics}
+
+\bb{Specification}
+Link data to graphic objects
+\bbi
+  \item Data
+  \item Transformation of variables (e.g. aggregation)
+  \item Scale transformations (e.g. log)
+  \item Coordinate system (e.g. cartesian)
+  \item Graphic Elements (e.g. points, lines)
+  \item Guides (e.g. labels, legends)
+\ei
+\eb
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{R package \code{"ggplot2"}}
+
+About \code{"ggplot2"}
+\bbi
+  \item Default appearance of plots carefully chosen
+  \item Designed with visual perception in mind
+  \item Inclusion of some components, like legends, are automated
+  \item Great flexibility for annotating, editing, and embedding output
+\ei
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Base graphics -vs- \code{"ggplot2"}}
+
+\begin{columns}[t]
+\begin{column}{0.4\textwidth}
+\centerline{base graphics}
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+
+{\centering \includegraphics[width=1.05\linewidth,height=1.05\linewidth]{figure/unnamed-chunk-3-1} 
+
+}
+
+
+
+\end{knitrout}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\centerline{ggplot2}
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+
+{\centering \includegraphics[width=.85\linewidth,height=.8\linewidth]{figure/unnamed-chunk-4-1} 
+
+}
+
+
+
+\end{knitrout}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{About \code{"ggplot2"}}
+
+\bbi
+  \item \code{"ggplot2"} is the name of the package
+  \item The \code{gg} in \code{"ggplot2"} stands for \textit{Grammar of Graphics}
+  \item Inspired in the \textbf{Grammar of Graphics} by Lee Wilkinson
+  \item \code{"ggplot"} is the class of objects (plots)
+  \item \code{ggplot()} is the main function in \code{"ggplot2"}
+\ei
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\begin{center}
+\Huge{\hilit{What is a Statistical Graphic?}}
+\end{center}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Some Data set}
+\code{mtcars}
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{verbatim}
+##                     mpg   hp  cyl
+## Mazda RX4          21.0  110    6
+## Mazda RX4 Wag      21.0  110    6
+## Datsun 710         22.8   93    4
+## Hornet 4 Drive     21.4  110    6
+## Hornet Sportabout  18.7  175    8
+## Valiant            18.1  105    6
+## Duster 360         14.3  245    8
+## Merc 240D          24.4   62    4
+## Merc 230           22.8   95    4
+## Merc 280           19.2  123    6
+\end{verbatim}
+\end{kframe}
+\end{knitrout}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{What is a statistical graphic?}
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+
+{\centering \includegraphics[width=.95\linewidth,height=.65\linewidth]{figure/unnamed-chunk-6-1} 
+
+}
+
+
+
+\end{knitrout}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{What is a statistical graphic?}
+
+Elements to draw the chart ``manually'' 
+\pause
+
+\bbi
+  \item coordinate system
+  \item x and y axis (intervals)
+  \item axis tick marks
+  \item axis labels, and title
+  \item points (with colors)
+  \item regression line (and ribbon)
+  \item legend
+\ei
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{What is a statistical graphic?}
+
+\bb{Simply put, a statistical graphic is:}
+\bi
+  \item A mapping from data to aesthetic attributes (color, shape, size) of geometric objects (points, lines, bars)
+  \item A plot may also contain statistical transformations of the data
+  \item A plot is drawn on a specific coordinate system
+  \item Sometimes faceting can be used to get the same plot for different subsets of the dataset
+\ei
+\eb
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\begin{center}
+\Huge{\hilit{Starting with \code{"ggplot2"}}}
+\end{center}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{\code{starwarstoy.csv}}
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+
+
+{\ttfamily\noindent\color{warningcolor}{\#\# Warning in file(file, "{}rt"{}): cannot open file '/Users/gaston/Documents/stat133/stat133/datasets/starwarstoy.csv': No such file or directory}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in file(file, "{}rt"{}): cannot open the connection}}
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): object 'starwars' not found}}\end{kframe}
+\end{knitrout}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Scatterplot}
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in ggplot(data = starwars): object 'starwars' not found}}\end{kframe}
+\end{knitrout}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Main steps in creating ggplot graphics}
+\begin{center}
+\ig[width=8cm]{images/ggplot_steps.pdf}
+\end{center}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Building a scatterplot}
+
+User specifications
+\bi
+  \item Dataset: \code{starwars} 
+  \item Variables: \code{height, weight, jedi}
+  \item Geoms: points
+  \item Aesthetics (attributes):
+  \bi
+    \item \textbf{x}: \code{height}
+    \item \textbf{y}: \code{weight}
+    \item \textbf{color}: \code{jedi}
+  \ei
+\ei
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Scatterplot with \code{"ggplot2"}}
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= starwars)} \hlopt{+}
+  \hlkwd{geom_point}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= height,} \hlkwc{y} \hlstd{= weight,} \hlkwc{color} \hlstd{= jedi))}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+\pause
+\bi
+  \item {\hilit \code{ggplot()}} initializes a \code{"ggplot"} object
+  \item specify the dataset with {\mdlit \code{data}}
+  \item type of geometric object: {\hilit \code{geom\_point()}}
+  \item mapping aesthetic attributes to variables with {\hilit \code{aes()}}
+  \bi
+    \item x-position: \code{height}
+    \item y-position: \code{weight}
+    \item color: \code{jedi}
+  \ei
+\ei
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Scatterplot with \code{"ggplot2"}}
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= starwars)} \hlopt{+}
+  \hlkwd{geom_point}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= height,} \hlkwc{y} \hlstd{= weight,} \hlkwc{color} \hlstd{= jedi))}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in ggplot(data = starwars): object 'starwars' not found}}\end{kframe}
+\end{knitrout}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Scatterplot with \code{"ggplot2"}}
+
+Automated things in \code{"ggplot2"}
+\bi
+  \item Axis labels
+  \item Legends (position, labels, symbols)
+  \item Choose of colors for points
+  \item Background color (e.g. gray)
+  \item Grid lines (major and minor)
+  \item Axis tick marks
+\ei
+
+{\lit \small you can always change the automated elements}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{\code{"ggplot2"} graphics}
+
+\bb{Philosophy of \code{"ggplot2"}}
+A graphic is a {\hilit \textbf{mapping}} from \textbf{data} to \textbf{aesthetic attributes} (color, shape, size) of \textbf{geometric objects} (points, lines, bars)
+\eb
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Scatterplot with \code{"ggplot2"}}
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= starwars)} \hlopt{+}
+  \hlkwd{geom_point}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= height,} \hlkwc{y} \hlstd{= weight,} \hlkwc{color} \hlstd{= jedi))}
+\end{alltt}
+
+
+{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in ggplot(data = starwars): object 'starwars' not found}}\end{kframe}
+\end{knitrout}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Mapping}
+\begin{center}
+\ig[width=11cm]{images/ggplot_mapping.pdf}
+\end{center}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{\code{"ggplot2"} graphics}
+
+\bb{Philosophy of \code{"ggplot2"}}
+A graphic is a {\hilit \textbf{mapping}} from \textbf{data} to \textbf{aesthetic attributes} (color, shape, size) of \textbf{geometric objects} (points, lines, bars)
+\eb
+
+\bi
+  \item \code{ggplot(data, ...)}
+  \item \code{aes()}
+  \item \code{geom\_objects()}
+\ei
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Scatterplot with \code{"ggplot2"}}
+
+How does \code{"ggplot2"} work?
+\bi
+  \item plots are created piece-by-piece
+  \item plot components added with {\hilit \textbf{+}} operator
+  \item aesthetic attributes mapped to data values
+  \item computation of scales for aesthetic attributes
+\ei
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{How does it work?}
+Usually, we specify the data and variables inside the function {\hilit \code{ggplot()}} 
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= mtcars,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= mpg,} \hlkwc{y} \hlstd{= hp))}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+Note the use of the internal function {\hilit \code{aes()}} to \textit{map} \code{x} to \code{mpg}, and \code{y} to \code{hp}.
+
+\bigskip
+Then we \textbf{add a layer} of geometric objects: points in this case
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlopt{+} \hlkwd{geom_point}\hlstd{()}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Some alternative options}
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{# option A}
+\hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= starwars,}
+       \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= height,} \hlkwc{y} \hlstd{= weight,} \hlkwc{color} \hlstd{= jedi))} \hlopt{+}
+  \hlkwd{geom_point}\hlstd{()}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+\pause
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{# option B}
+\hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= starwars)} \hlopt{+}
+  \hlkwd{geom_point}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= height,} \hlkwc{y} \hlstd{= weight,} \hlkwc{color} \hlstd{= jedi))}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+\pause
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{# option C}
+\hlkwd{ggplot}\hlstd{()} \hlopt{+}
+  \hlkwd{geom_point}\hlstd{(}\hlkwc{data} \hlstd{= starwars,}
+             \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= height,} \hlkwc{y} \hlstd{= weight,} \hlkwc{color} \hlstd{= jedi))}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Main inquiries}
+
+\bb{Always ask yourself ...}
+\bbi
+  \item What is the \textbf{data} set of interest?
+  \item What \textbf{variables} will be used to make the plot?
+  \item What \textbf{graphics shapes} will be used to display?
+  \item What \textbf{features} of the shapes will be used to represent the data values?
+\ei
+\eb
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{\code{"ggplot2"} basics}
+
+\bbi
+  \item The data must be in a \code{data.frame}
+  \item Variables are mapped to aesthetic attributes
+  \item Aesthetic attributes belong to geometric objects \textbf{geoms} (points, lines, polygons)
+\ei
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Basic Terminology}
+
+\bbi
+  \item \textbf{ggplot()} - The main function where you specify the dataset and variables to plot
+  \item \textbf{geoms} - geometric objetcs
+  \bi
+    \item \code{geom\_point()}, \code{geom\_bar()}, \code{geom\_line(), \code{geom\_density()}}
+  \ei
+  \item \textbf{aes} - aesthetics (i.e. attributes)
+  \bi
+    \item shape, color, fill, linetype
+  \ei
+\ei
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Warning}
+
+\code{"ggplot2"} comes with the function {\hilit \code{qplot()}} (i.e. \textit{quick plot}). Avoid using it! 
+
+\bigskip
+As Karthik Ram says: ``you'll end up unlearning and relearning a good bit''
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Scatterplot with \code{"ggplot2"}}
+
+Terminology
+\bi
+  \item aesthetic mappings
+  \item geometric objects
+  \item statistical transformations
+  \item scales
+  \item non-data elements (themes \& elements)
+  \item facets
+\ei
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Considerations}
+
+Specifying graphical elements from 3 sources:
+\bbi
+  \item The data values (represented by the geometric objects)
+  \item The scales and coordinate system (axes, legends)
+  \item Plot annotations (background, title, grid lines)
+\ei
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Scatterplot with \code{geom\_point}}
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= mtcars,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= mpg,} \hlkwc{y} \hlstd{= hp))} \hlopt{+}
+  \hlkwd{geom_point}\hlstd{()}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=.7\linewidth,height=.6\linewidth]{figure/unnamed-chunk-13-1} 
+
+}
+
+
+
+\end{knitrout}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Another \code{geom}}
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= mtcars,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= mpg,} \hlkwc{y} \hlstd{= hp))} \hlopt{+}
+  \hlkwd{geom_line}\hlstd{()}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=.7\linewidth,height=.6\linewidth]{figure/unnamed-chunk-14-1} 
+
+}
+
+
+
+\end{knitrout}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\begin{center}
+\Huge{{\hilit Mapping Attributes \\ 
+-vs- \\
+Setting Attributes}}
+\end{center}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Increase size of points}
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= mtcars,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= mpg,} \hlkwc{y} \hlstd{= hp))} \hlopt{+}
+  \hlkwd{geom_point}\hlstd{(}\hlkwc{size} \hlstd{=} \hlnum{3}\hlstd{)}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=.7\linewidth,height=.6\linewidth]{figure/xyplot_mtcars2-1} 
+
+}
+
+
+
+\end{knitrout}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{How does it work?}
+To increase the size of points, we \textbf{set} the aesthetic \code{size} to a constant value of 3 (inside the \textit{geoms} function):
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlopt{+} \hlkwd{geom_point}\hlstd{(}\hlkwc{size} \hlstd{=} \hlnum{3}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Adding color}
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= mtcars,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= mpg,} \hlkwc{y} \hlstd{= hp))} \hlopt{+}
+  \hlkwd{geom_point}\hlstd{(}\hlkwc{size} \hlstd{=} \hlnum{3}\hlstd{,} \hlkwc{color} \hlstd{=} \hlstr{"tomato"}\hlstd{)}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=.7\linewidth,height=.6\linewidth]{figure/xyplot_mtcars3-1} 
+
+}
+
+
+
+\end{knitrout}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Adding color}
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= mtcars,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= mpg,} \hlkwc{y} \hlstd{= hp))} \hlopt{+}
+  \hlkwd{geom_point}\hlstd{(}\hlkwc{size} \hlstd{=} \hlnum{3}\hlstd{,} \hlkwc{color} \hlstd{=} \hlstr{"#259ff8"}\hlstd{)}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=.7\linewidth,height=.6\linewidth]{figure/unnamed-chunk-16-1} 
+
+}
+
+
+
+\end{knitrout}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Test your knowledge}
+
+\bb{Identify the valid hex-color}
+\bbi
+  \item[A)] \code{"345677"}
+  \item[B)] \code{"\#1234567"}
+  \item[C)] \code{"\#AAAAAA"}
+  \item[D)] \code{"\#GG0033"}
+\ei
+\eb
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Changing points shape}
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{# 'shape' accepts 'pch' values}
+\hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= mtcars,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= mpg,} \hlkwc{y} \hlstd{= hp))} \hlopt{+}
+  \hlkwd{geom_point}\hlstd{(}\hlkwc{size} \hlstd{=} \hlnum{3}\hlstd{,} \hlkwc{color} \hlstd{=} \hlstr{"tomato"}\hlstd{,} \hlkwc{shape} \hlstd{=} \hlnum{15}\hlstd{)}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=.7\linewidth,height=.6\linewidth]{figure/xyplot_mtcars4-1} 
+
+}
+
+
+
+\end{knitrout}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Setting and Mapping}
+
+Aesthetic attributes can be either \textbf{mapped} ---via \code{aes()}--- or \textbf{set}
+
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{# mapping aesthetic color}
+\hlkwd{ggplot}\hlstd{(mtcars,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= mpg,} \hlkwc{y} \hlstd{= hp))} \hlopt{+}
+  \hlkwd{geom_point}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{color} \hlstd{= cyl))}
+
+\hlcom{# setting aesthetic color}
+\hlkwd{ggplot}\hlstd{(mtcars,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= mpg,} \hlkwc{y} \hlstd{= hp))} \hlopt{+}
+  \hlkwd{geom_point}\hlstd{(}\hlkwc{color} \hlstd{=} \hlstr{"blue"}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Geom text, and mapping labels}
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= mtcars,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= mpg,} \hlkwc{y} \hlstd{= hp))} \hlopt{+}
+  \hlkwd{geom_text}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{label} \hlstd{= gear))}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=.7\linewidth,height=.6\linewidth]{figure/xyplot_mtcars9-1} 
+
+}
+
+
+
+\end{knitrout}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Changing axis labels and title}
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= mtcars,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= mpg,} \hlkwc{y} \hlstd{= hp))} \hlopt{+}
+  \hlkwd{geom_point}\hlstd{(}\hlkwc{size} \hlstd{=} \hlnum{3}\hlstd{,} \hlkwc{color} \hlstd{=} \hlstr{"tomato"}\hlstd{)} \hlopt{+}
+  \hlkwd{xlab}\hlstd{(}\hlstr{"miles per gallon"}\hlstd{)} \hlopt{+}
+  \hlkwd{ylab}\hlstd{(}\hlstr{"horse power"}\hlstd{)} \hlopt{+}
+  \hlkwd{ggtitle}\hlstd{(}\hlstr{"Scatter plot with ggplot2"}\hlstd{)}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=.6\linewidth,height=.5\linewidth]{figure/xyplot_mtcars5-1} 
+
+}
+
+
+
+\end{knitrout}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Changing background theme}
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= mtcars,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= mpg,} \hlkwc{y} \hlstd{= hp))} \hlopt{+}
+  \hlkwd{geom_point}\hlstd{(}\hlkwc{size} \hlstd{=} \hlnum{3}\hlstd{,} \hlkwc{color} \hlstd{=} \hlstr{"tomato"}\hlstd{)} \hlopt{+}
+  \hlkwd{xlab}\hlstd{(}\hlstr{"miles per gallon"}\hlstd{)} \hlopt{+}
+  \hlkwd{ylab}\hlstd{(}\hlstr{"horse power"}\hlstd{)} \hlopt{+}
+  \hlkwd{ggtitle}\hlstd{(}\hlstr{"Scatter plot with ggplot2"}\hlstd{)} \hlopt{+}
+  \hlkwd{theme_bw}\hlstd{()}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=.6\linewidth,height=.5\linewidth]{figure/xyplot_mtcars6-1} 
+
+}
+
+
+
+\end{knitrout}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Your turn: Replicate this figure}
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+
+{\centering \includegraphics[width=.8\linewidth,height=.6\linewidth]{figure/your_xyplot1-1} 
+
+}
+
+
+
+\end{knitrout}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Your turn: Replicate this figure}
+\bi
+  \item Specify a color in hex notation
+  \item Change the shape of the point symbol
+  \item Map \code{disp} to attribute size of points
+  \item Add axis labels
+\ei
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Your turn}
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= mtcars,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= mpg,} \hlkwc{y} \hlstd{= hp))} \hlopt{+}
+  \hlkwd{geom_point}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{size} \hlstd{= disp),}
+             \hlkwc{color} \hlstd{=} \hlstr{"#ff6666"}\hlstd{,} \hlkwc{shape} \hlstd{=} \hlnum{17}\hlstd{)} \hlopt{+}
+  \hlkwd{xlab}\hlstd{(}\hlstr{"miles per gallon"}\hlstd{)} \hlopt{+}
+  \hlkwd{ylab}\hlstd{(}\hlstr{"horse power"}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{More geoms}
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= mtcars,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= mpg,} \hlkwc{y} \hlstd{= hp))} \hlopt{+}
+  \hlkwd{geom_point}\hlstd{()} \hlopt{+}
+  \hlkwd{geom_smooth}\hlstd{(}\hlkwc{method} \hlstd{=} \hlstr{"lm"}\hlstd{)}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=.7\linewidth,height=.6\linewidth]{figure/xyplot_mtcars10-1} 
+
+}
+
+
+
+\end{knitrout}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{More geoms}
+We can map variable to a color aesthetic. Here we map \code{color} to \code{cyl} (cylinders)
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= mtcars,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= mpg,} \hlkwc{y} \hlstd{= hp))} \hlopt{+}
+  \hlkwd{geom_point}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{color} \hlstd{= cyl))}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=.6\linewidth,height=.5\linewidth]{figure/xyplot_mtcars11-1} 
+
+}
+
+
+
+\end{knitrout}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{More geoms}
+If the variable that maps to color is a factor, then the color scale will change
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= mtcars,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= mpg,} \hlkwc{y} \hlstd{= hp))} \hlopt{+}
+  \hlkwd{geom_point}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{color} \hlstd{=} \hlkwd{as.factor}\hlstd{(cyl)))}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=.75\linewidth,height=.5\linewidth]{figure/xyplot_mtcars12-1} 
+
+}
+
+
+
+\end{knitrout}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Your turn: Replicate this figure}
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+
+{\centering \includegraphics[width=.85\linewidth,height=.6\linewidth]{figure/your_xyplot2-1} 
+
+}
+
+
+
+\end{knitrout}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Your turn: example 2}
+\bi
+  \item Map \code{hp} to attribute size of points
+  \item Map \code{am} (as factor) to attribute color points
+  \item Add an alpha transparency of 0.7
+  \item Change the shape of the point symbol
+  \item Add axis labels
+  \item Add a title
+\ei
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Your turn: example 2}
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= mtcars,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= mpg,} \hlkwc{y} \hlstd{= disp))} \hlopt{+}
+  \hlkwd{geom_point}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{size} \hlstd{= hp,} \hlkwc{color} \hlstd{=} \hlkwd{factor}\hlstd{(am)),}
+             \hlkwc{alpha} \hlstd{=} \hlnum{0.7}\hlstd{)} \hlopt{+}
+  \hlkwd{xlab}\hlstd{(}\hlstr{"miles per gallon"}\hlstd{)} \hlopt{+}
+  \hlkwd{ylab}\hlstd{(}\hlstr{"displacement"}\hlstd{)} \hlopt{+}
+  \hlkwd{ggtitle}\hlstd{(}\hlstr{"Scatter plot with ggplot2"}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Histogram}
+
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= mtcars,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= mpg))} \hlopt{+}
+  \hlkwd{geom_histogram}\hlstd{(}\hlkwc{binwidth} \hlstd{=} \hlnum{2}\hlstd{)}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=.9\linewidth,height=.5\linewidth]{figure/unnamed-chunk-18-1} 
+
+}
+
+
+
+\end{knitrout}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Boxplots}
+
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= mtcars,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{=} \hlkwd{factor}\hlstd{(cyl),} \hlkwc{y} \hlstd{= mpg))} \hlopt{+}
+  \hlkwd{geom_boxplot}\hlstd{()}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=.9\linewidth,height=.5\linewidth]{figure/unnamed-chunk-19-1} 
+
+}
+
+
+
+\end{knitrout}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Density Curves}
+
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= mtcars,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= mpg))} \hlopt{+}
+  \hlkwd{geom_density}\hlstd{()}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=.9\linewidth,height=.5\linewidth]{figure/unnamed-chunk-20-1} 
+
+}
+
+
+
+\end{knitrout}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Density Curves}
+
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= mtcars,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= mpg))} \hlopt{+}
+  \hlkwd{geom_density}\hlstd{(}\hlkwc{fill} \hlstd{=} \hlstr{"#c6b7f5"}\hlstd{)}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=.9\linewidth,height=.5\linewidth]{figure/unnamed-chunk-21-1} 
+
+}
+
+
+
+\end{knitrout}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Density Curves}
+
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= mtcars,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= mpg))} \hlopt{+}
+  \hlkwd{geom_density}\hlstd{(}\hlkwc{fill} \hlstd{=} \hlstr{"#c6b7f5"}\hlstd{,} \hlkwc{alpha} \hlstd{=} \hlnum{0.4}\hlstd{)}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=.9\linewidth,height=.5\linewidth]{figure/unnamed-chunk-22-1} 
+
+}
+
+
+
+\end{knitrout}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Density Curves}
+
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= mtcars,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= mpg))} \hlopt{+}
+  \hlkwd{geom_line}\hlstd{(}\hlkwc{stat} \hlstd{=} \hlstr{'density'}\hlstd{,} \hlkwc{col} \hlstd{=} \hlstr{"#a868c0"}\hlstd{,} \hlkwc{size} \hlstd{=} \hlnum{2}\hlstd{)}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=.9\linewidth,height=.5\linewidth]{figure/unnamed-chunk-23-1} 
+
+}
+
+
+
+\end{knitrout}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Density Curves}
+
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= mtcars,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= mpg))} \hlopt{+}
+  \hlkwd{geom_density}\hlstd{(}\hlkwc{fill} \hlstd{=} \hlstr{'#a868c0'}\hlstd{)} \hlopt{+}
+  \hlkwd{geom_line}\hlstd{(}\hlkwc{stat} \hlstd{=} \hlstr{'density'}\hlstd{,} \hlkwc{col} \hlstd{=} \hlstr{"#a868c0"}\hlstd{,} \hlkwc{size} \hlstd{=} \hlnum{2}\hlstd{)}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=.9\linewidth,height=.5\linewidth]{figure/unnamed-chunk-24-1} 
+
+}
+
+
+
+\end{knitrout}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\begin{center}
+\Huge{\hilit{\code{ggplot} objects}}
+\end{center}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Plot objects}
+You can assign a plot to a new object (this won't plot anything):
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{mpg_hp} \hlkwb{<-} \hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= mtcars,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= mpg,} \hlkwc{y} \hlstd{= hp))} \hlopt{+}
+  \hlkwd{geom_point}\hlstd{(}\hlkwc{size} \hlstd{=} \hlnum{3}\hlstd{,} \hlkwc{color} \hlstd{=} \hlstr{"tomato"}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+To show the actual plot associated to the object \code{mpg\_hp} use the function \code{print()}
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{print}\hlstd{(mpg_hp)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{\code{"ggplot2"} objects}
+
+\bb{working with ggplot objects, we can ...}
+\bi
+  \item define a basic plot, to which we can add or change layers without typing everything again
+  \item render it on screen with \code{print()}
+  \item describe its structure with \code{summary()}
+  \item render it to disk with \code{ggsave()}
+  \item save a cached copy to disk with \code{save()}
+\ei
+\eb
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{}
+Adding a title and axis labels to a ggplot2 object:
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{mpg_hp} \hlopt{+} \hlkwd{ggtitle}\hlstd{(}\hlstr{"Scatter plot with ggplot2"}\hlstd{)} \hlopt{+}
+  \hlkwd{xlab}\hlstd{(}\hlstr{"miles per gallon"}\hlstd{)} \hlopt{+} \hlkwd{ylab}\hlstd{(}\hlstr{"horse power"}\hlstd{)}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=.6\linewidth,height=.5\linewidth]{figure/xyplot_mtcars8-1} 
+
+}
+
+
+
+\end{knitrout}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Your turn: example 3}
+Create the following ggplot object:
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlcom{# ggplot object}
+\hlstd{obj} \hlkwb{<-} \hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= mtcars,}
+         \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= mpg,} \hlkwc{y} \hlstd{= hp,} \hlkwc{label} \hlstd{=} \hlkwd{rownames}\hlstd{(mtcars)))}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+Add more layers to the object \code"{"obj"} in order to replicate the figure in the following slide:
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Your turn: example 3}
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+
+{\centering \includegraphics[width=.8\linewidth,height=.6\linewidth]{figure/your_xyplot3-1} 
+
+}
+
+
+
+\end{knitrout}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Your turn: example 3}
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{obj} \hlopt{+}
+  \hlkwd{geom_text}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{color} \hlstd{=} \hlkwd{factor}\hlstd{(am)))} \hlopt{+}
+  \hlkwd{ggtitle}\hlstd{(}\hlstr{"Scatter plot"}\hlstd{)} \hlopt{+}
+  \hlkwd{xlab}\hlstd{(}\hlstr{"miles per gallon"}\hlstd{)} \hlopt{+}
+  \hlkwd{ylab}\hlstd{(}\hlstr{"horse power"}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\begin{center}
+\Huge{\hilit{Scales}}
+\end{center}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Scales}
+
+\bi
+  \item The \textbf{scales} component encompases the ideas of both axes and legends on plots, e.g.:
+  \item Axes can be continuous or discrete
+  \item Legends involve colors, symbol shapes, size, etc
+  \bi
+    \item \code{scale\_x\_continuous}
+    \item \code{scale\_y\_continuous}
+    \item \code{scale\_color\_manual}
+  \ei
+  \item \textbf{scales} will often automatically generate appropriate scales for plots
+  \item Explicitly adding a scale component overrides the default scale
+\ei
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Continuous axis scales}
+Use \code{scale\_x\_continuous()} to modify the default values in the $x$ axis
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= mtcars,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= mpg,} \hlkwc{y} \hlstd{= hp))} \hlopt{+}
+  \hlkwd{geom_point}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{color} \hlstd{=} \hlkwd{factor}\hlstd{(am)))} \hlopt{+}
+  \hlkwd{scale_x_continuous}\hlstd{(}\hlkwc{name} \hlstd{=} \hlstr{"miles per gallon"}\hlstd{,}
+                     \hlkwc{limits} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{10}\hlstd{,} \hlnum{40}\hlstd{),}
+                     \hlkwc{breaks} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{10}\hlstd{,} \hlnum{20}\hlstd{,} \hlnum{30}\hlstd{,} \hlnum{40}\hlstd{))}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Continuous axis scales}
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+
+{\centering \includegraphics[width=.9\linewidth,height=.5\linewidth]{figure/scale_x-1} 
+
+}
+
+
+
+\end{knitrout}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Continuous axis scales}
+Use \code{scale\_y\_continuous()} to modify the default values in the $y$ axis
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= mtcars,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= mpg,} \hlkwc{y} \hlstd{= hp))} \hlopt{+}
+  \hlkwd{geom_point}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{color} \hlstd{=} \hlkwd{factor}\hlstd{(am)))} \hlopt{+}
+  \hlkwd{scale_x_continuous}\hlstd{(}\hlkwc{name} \hlstd{=} \hlstr{"miles per gallon"}\hlstd{,}
+                     \hlkwc{limits} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{10}\hlstd{,} \hlnum{40}\hlstd{),}
+                     \hlkwc{breaks} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{10}\hlstd{,} \hlnum{20}\hlstd{,} \hlnum{30}\hlstd{,} \hlnum{40}\hlstd{))} \hlopt{+}
+  \hlkwd{scale_y_continuous}\hlstd{(}\hlkwc{name} \hlstd{=} \hlstr{"horsepower"}\hlstd{,}
+                     \hlkwc{limits} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{50}\hlstd{,} \hlnum{350}\hlstd{),}
+                     \hlkwc{breaks} \hlstd{=} \hlkwd{seq}\hlstd{(}\hlnum{50}\hlstd{,} \hlnum{350}\hlstd{,} \hlkwc{by} \hlstd{=} \hlnum{50}\hlstd{))}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Continuous axis scales}
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+
+{\centering \includegraphics[width=.9\linewidth,height=.5\linewidth]{figure/scale_y-1} 
+
+}
+
+
+
+\end{knitrout}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Example: color scale}
+
+Use \code{scale\_color\_manual()} to modify the colors associated to a factor
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= mtcars,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= mpg,} \hlkwc{y} \hlstd{= hp))} \hlopt{+}
+  \hlkwd{geom_point}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{color} \hlstd{=} \hlkwd{factor}\hlstd{(am)))} \hlopt{+}
+  \hlkwd{scale_color_manual}\hlstd{(}\hlkwc{values} \hlstd{=} \hlkwd{c}\hlstd{(}\hlstr{"orange"}\hlstd{,} \hlstr{"purple"}\hlstd{))}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Example: color scale}
+
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+
+{\centering \includegraphics[width=.9\linewidth,height=.5\linewidth]{figure/color_manual-1} 
+
+}
+
+
+
+\end{knitrout}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Example: modifying legend}
+
+Modifying legends depends on the type of scales (e.g. color, shapes, size, etc)
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= mtcars,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= mpg,} \hlkwc{y} \hlstd{= hp))} \hlopt{+}
+  \hlkwd{geom_point}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{color} \hlstd{=} \hlkwd{factor}\hlstd{(am)))} \hlopt{+}
+  \hlkwd{scale_color_manual}\hlstd{(}\hlkwc{values} \hlstd{=} \hlkwd{c}\hlstd{(}\hlstr{"orange"}\hlstd{,} \hlstr{"purple"}\hlstd{),}
+                     \hlkwc{name} \hlstd{=} \hlstr{"transmission"}\hlstd{,}
+                     \hlkwc{labels} \hlstd{=} \hlkwd{c}\hlstd{(}\hlstr{'no'}\hlstd{,} \hlstr{'yes'}\hlstd{))}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Example: modifying legend}
+
+\begin{knitrout}\footnotesize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+
+{\centering \includegraphics[width=.9\linewidth,height=.5\linewidth]{figure/legend_guide-1} 
+
+}
+
+
+
+\end{knitrout}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\begin{center}
+\Huge{\hilit{Faceting}}
+\end{center}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Faceting with \code{facet\_wrap()}}
+
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= mtcars,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= mpg,} \hlkwc{y} \hlstd{= hp))} \hlopt{+}
+  \hlkwd{geom_point}\hlstd{(}\hlkwc{color} \hlstd{=} \hlstr{"#3088f0"}\hlstd{)} \hlopt{+}
+  \hlkwd{facet_wrap}\hlstd{(}\hlopt{~} \hlstd{cyl)}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=.9\linewidth,height=.5\linewidth]{figure/unnamed-chunk-27-1} 
+
+}
+
+
+
+\end{knitrout}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Faceting with \code{facet\_grid()}}
+
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= mtcars,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= mpg,} \hlkwc{y} \hlstd{= hp))} \hlopt{+}
+  \hlkwd{geom_point}\hlstd{(}\hlkwc{color} \hlstd{=} \hlstr{"#3088f0"}\hlstd{)} \hlopt{+}
+  \hlkwd{facet_grid}\hlstd{(cyl} \hlopt{~} \hlstd{.)}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=.8\linewidth,height=.5\linewidth]{figure/unnamed-chunk-28-1} 
+
+}
+
+
+
+\end{knitrout}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Faceting with \code{facet\_grid()}}
+
+\begin{knitrout}\scriptsize
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= mtcars,} \hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= mpg,} \hlkwc{y} \hlstd{= hp))} \hlopt{+}
+  \hlkwd{geom_point}\hlstd{(}\hlkwc{color} \hlstd{=} \hlstr{"#3088f0"}\hlstd{)} \hlopt{+}
+  \hlkwd{facet_grid}\hlstd{(.} \hlopt{~} \hlstd{cyl)}
+\end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=.9\linewidth,height=.5\linewidth]{figure/unnamed-chunk-29-1} 
+
+}
+
+
+
+\end{knitrout}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Layered Grammar}
+
+About \code{"ggplot2"}
+\bi
+  \item Key concept: \textbf{layer} (layered grammar of graphics)
+  \item Designed to work in a layered fashion
+  \item Starting with a layer showing the data
+  \item Then adding layers of annotations and statistical transformations
+  \item Core idea: independents components combined togehter
+\ei
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Some Concepts}
+
+\bi
+  \item the \textbf{data} to be visualized
+  \item a set of \textbf{aesthetic mappings} describing how varibales are mapped to aesthetic attributes
+  \item geometric objects, \textbf{geoms}, representing what you  see on the plot (points, lines, etc)
+  \item statistical transformations, \textbf{stats}, summarizing data in various ways
+  \item \textbf{scales} that map values in the data space to values in an aesthetic space
+  \item a coordinate system, \textbf{coord}, describing how data coordinates are mapped to the plane of the graphic
+  \item a \textbf{faceting} specification describing how to break up the data into subsets and to displays those subsets
+\ei
+
+\end{frame}
+
+
+\end{document}
