@@ -1,0 +1,85 @@
+---
+title: "Lab 4: Intro to the packages ggplot2 and dplyr"
+subtitle: "Stat 133, Fall 2016"
+author: "Gaston Sanchez"
+header-includes: \usepackage{float}
+output: html_document
+---
+
+> ### Learning Objectives
+>
+> - Introduction to the R package "ggplot2"
+> - Understanding the grammar of ggplot
+> - Plots for one variable
+> - Scatter plots
+> - Faceting
+> - Introduction to the R package "dplyr"
+> - Basic verbs of "dplyr"
+> - Get to know the "pipe" operator `%>%`
+
+------
+
+
+## Graphics with ggplot2, and data frame manipulation with dplyr
+
+R has an amazing ecosystem of graphing capabilities to produce static plots.
+As for dynamic/interactive plots, R is very limited, although there have 
+been various packages developed in recent years to provide some interesting solutions.
+
+In this session, we will focus on the most popular R package to create 
+graphics: `"ggplot2"`. 
+
+We will also introduce the `"dplyr"` package that allows to manipulate
+data frames in very interesting ways.
+
+Remember to install the packages (if you haven't done so):
+
+```{r eval = FALSE}
+# installation
+install.packages(c("ggplot2", "dplyr"))
+
+# load them in your session
+library(ggplot2)
+library(dplyr)
+```
+
+------
+
+## Introduction to ggplot2 (by Karthik Ram)
+
+Walk through Karthik's slides about ggplot2:
+[https://github.com/karthik/ggplot-lecture](https://github.com/karthik/ggplot-lecture)
+
+Slides: [https://github.com/karthik/ggplot-lecture/blob/master/ggplot.pdf](https://github.com/karthik/ggplot-lecture/blob/master/ggplot.pdf)
+
+-----
+
+
+## `"dplyr"` introductory tutorials
+
+Look at __dplyr__'s vignette: [Introduction to dplyr](https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html)
+
+Here's another `"dplyr"` tutorial: [Data Manipulation with dplyr](http://datascienceplus.com/data-manipulation-with-dplyr/) 
+(by Teja Kodali)
+
+
+-----
+
+### References for ggplot2
+
+- [RStudio's ggplot2 cheat sheet](https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf)
+- [ggplot2 official documentation](http://docs.ggplot2.org/current/)
+- [Using R package plotly's with ggplot2 to create interactive, online ggplot2 charts](https://plot.ly/ggplot2/)
+- [ggplot2: Elegant Graphics for Data Analysis](http://ggplot2.org/book/) (by Hadley Wickham)
+- [R Graphics Cookbook](http://shop.oreilly.com/product/0636920023135.do) (by Winston Chang)
+- [stack overflow questions tagged with ggplot2](http://stackoverflow.com/questions/tagged/ggplot2)
+
+
+### References for dplyr
+
+- Introductory vignette: [Introduction to dplyr](https://cran.r-project.org/web/packages/dplyr/vignettes/introduction.html)
+- Video: [Pipelines for Data Analysis](https://www.youtube.com/watch?v=40tyOFMZUSM)
+- Video: [Expressing Yourself in R](https://www.youtube.com/watch?v=wki0BqlztCo)
+(by Hadley Wickham)
+
+-----
