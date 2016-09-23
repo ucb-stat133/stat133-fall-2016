@@ -6,10 +6,13 @@ PDFS = $(patsubst %.Rmd, %.pdf, $(RMDS))
 HTMLS = $(patsubst %.Rmd, %.html, $(RMDS))
 
 
-.PHONY: all clean
+.PHONY: all htmls clean
 
 
 all: $(PDFS)
+
+
+htmls: $(HTMLS)
 
 
 %.pdf: %.Rmd
