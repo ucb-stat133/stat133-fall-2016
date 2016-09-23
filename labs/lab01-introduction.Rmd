@@ -3,7 +3,7 @@ title: "Lab 1: Getting started with R"
 subtitle: "Stat 133, Fall 2016"
 author: "Gaston Sanchez"
 header-includes: \usepackage{float}
-output: html_document
+output: pdf_document
 ---
 
 > ### Learning Objectives
