@@ -2,18 +2,23 @@
 RMDS = $(wildcard *.Rmd)
 
 # output files
+PDFS = $(patsubst %.Rmd, %.pdf, $(RMDS))
 HTMLS = $(patsubst %.Rmd, %.html, $(RMDS))
 
 
-.PHONY: clean
+.PHONY: all clean
 
 
-all: $(HTMLS)
+all: $(PDFS)
+
+
+%.pdf: %.Rmd
+	Rscript -e "library(rmarkdown); render('$<', output_format = "pdf_document")"
 
 
 %.html: %.Rmd
-	Rscript -e "library(rmarkdown); render('$<')"
+	Rscript -e "library(rmarkdown); render('$<', output_format = "html_document")"
 
 
 clean:
-	rm -rf *.html
+	rm -rf *.pdf *.html
