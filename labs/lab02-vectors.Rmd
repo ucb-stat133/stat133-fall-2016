@@ -4,6 +4,7 @@ subtitle: "Stat 133, Fall 2016"
 author: "Gaston Sanchez"
 header-includes: \usepackage{float}
 output: pdf_document
+urlcolor: blue
 ---
 
 > ### Learning Objectives

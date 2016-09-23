@@ -4,6 +4,7 @@ subtitle: "Stat 133, Fall 2016"
 author: "Gaston Sanchez"
 header-includes: \usepackage{float}
 output: pdf_document
+urlcolor: blue
 ---
 
 > ### Learning Objectives
@@ -44,9 +45,11 @@ The first data set to consider is the __Abalone Data Set__ that is part of the
 [UCI Machine Learning Repository](http://archive.ics.uci.edu/ml/datasets/Abalone)
 
 The location of the data file is:
+
 [http://archive.ics.uci.edu/ml/machine-learning-databases/abalone/abalone.data](http://archive.ics.uci.edu/ml/machine-learning-databases/abalone/abalone.data)
 
 The location of the data dictionary (description of the data) is:
+
 [http://archive.ics.uci.edu/ml/machine-learning-databases/abalone/abalone.names](http://archive.ics.uci.edu/ml/machine-learning-databases/abalone/abalone.names)
 
 Look at both the dataset file, and the file with its description, and answer 
@@ -172,7 +175,9 @@ str(abalone, vec.len = 1)
 ### Your turn
 
 - Read the Abalone data with the `read.csv()` function
-- Look at the data description [http://archive.ics.uci.edu/ml/machine-learning-databases/abalone/abalone.names](http://archive.ics.uci.edu/ml/machine-learning-databases/abalone/abalone.names) and confirm the following statistics:
+- Look at the data description
+
+[http://archive.ics.uci.edu/ml/machine-learning-databases/abalone/abalone.names](http://archive.ics.uci.edu/ml/machine-learning-databases/abalone/abalone.names) and confirm the following statistics:
 
 ```
        Length Diam  Height  Whole  Shucked  Viscera    Shell    Rings
@@ -219,12 +224,15 @@ boxplot(abalone$diameter, horizontal = TRUE)
 ## Pittsburgh Bridges Data Set 
 
 The data set is part of the UCI Machine Learning Repository:
+
 [http://archive.ics.uci.edu/ml/datasets/Pittsburgh+Bridges](http://archive.ics.uci.edu/ml/datasets/Pittsburgh+Bridges)
 
 The data Description is here:
+
 [http://archive.ics.uci.edu/ml/machine-learning-databases/bridges/bridges.names](http://archive.ics.uci.edu/ml/machine-learning-databases/bridges/bridges.names)
 
 The Data file is here:
+
 [http://archive.ics.uci.edu/ml/machine-learning-databases/bridges/bridges.data.version1](http://archive.ics.uci.edu/ml/machine-learning-databases/bridges/bridges.data.version1)
 
 
