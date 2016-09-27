@@ -1,0 +1,1321 @@
+\documentclass[12pt]{beamer}
+\usepackage{graphicx}
+\usepackage{tikz}
+\setbeameroption{hide notes}
+\setbeamertemplate{note page}[plain]
+\usepackage{listings}
+
+\input{../header.tex}
+
+%------------------------------------------------
+% end of header
+%------------------------------------------------
+
+\title{Basics of Functions}
+\subtitle{STAT 133}
+\author{\href{http://www.gastonsanchez.com}{Gaston Sanchez}}
+\institute{\href{https://github.com/ucb-stat133/stat133-fall-2016}{\tt \scriptsize \color{foreground} github.com/ucb-stat133/stat133-fall-2016}}
+\date{}
+
+
+\begin{document}
+<<setup, include=FALSE>>=
+# smaller font size for chunks
+opts_chunk$set(size = 'footnotesize')
+#thm <- knit_theme$get("bclear")
+#knit_theme$set(thm)
+options(width=78)
+@
+
+{
+  \setbeamertemplate{footline}{} % no page number here
+  \frame{
+    \titlepage
+  } 
+}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Functions}
+
+R comes with many functions and packages that let us perform a wide variety of tasks. Sometimes, however, there's no function to do what we want to achieve. In these cases we need to create our own functions.
+
+To talk about functions, we must first talk about \textbf{R expressions}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\begin{center}
+\Huge{\hilit{Expressions}}
+\end{center}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Expressions}
+
+\bb{R code is composed of a series of \textbf{expressions}}
+\bbi
+  \item assignment statements
+  \item arithmetic expressions
+  \item function calls
+  \item conditional statements
+  \item etc
+\ei
+\eb
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Simple Expressions}
+<<eval = FALSE>>=
+# assignment statement
+a <- 12345
+
+# arithmetic expression
+525 + 34 - 280
+
+# function call
+median(1:10)
+@
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Expressions}
+
+One way to separate expressions is with new lines:
+<<eval = FALSE>>=
+a <- 12345
+525 + 34 - 280
+median(1:10)
+@
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Grouping Expressions}
+
+\bb{Constructs for grouping together expressions}
+\bbi
+  \item semicolons
+  \item curly braces
+\ei
+\eb
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Separating Expressions}
+
+Simple expressions separated with new lines:
+<<eval = FALSE>>=
+a <- 10
+b <- 20
+d <- 30
+@
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Grouping Expressions}
+
+Grouping expressions with semicolons:
+<<eval = FALSE>>=
+a <- 10; b <- 20; d <- 30
+@
+
+Although this is a perfectly valid expression, we recommend avoiding semicolons,
+since they make code harder to review.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Grouping Expressions}
+
+Grouping expressions with braces:
+<<eval = FALSE>>=
+{
+  a <- 10
+  b <- 20
+  d <- 30
+}
+@
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Grouping Expressions}
+
+Multiple expressions in one line within braces:
+<<eval = FALSE>>=
+{a <- 10; b <- 20; d <- 30}
+@
+
+Again, this piece of code is just for illustration purposes (don't write code
+like this!)
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Brackets and Braces in R}
+\begin{center}
+\ig[width=9cm]{images/braces.pdf}
+\end{center}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Brackets and Braces}
+<<eval = FALSE>>=
+# brackets for objects
+dataset[1:10]
+@
+
+\pause
+<<eval=FALSE>>=
+# parentheses for functions
+some_function(dataset)
+@
+
+\pause
+<<eval=FALSE>>=
+# brackets for expressions
+{
+  1 + 1
+  mean(1:5)
+  tbl <- read.csv('datafile.csv')
+}
+@
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Expressions}
+
+\bbi
+  \item A program is a set of instructions
+  \item Programs are made up of expressions
+  \item R expressions can be simple or compound
+  \item \textbf{Every expression in R has a value}
+\ei
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Expressions}
+
+<<>>=
+# Expressions can be simple statements:
+5 + 3
+@
+
+<<>>=
+# Expressions can also be compound:
+{5 + 3; 4 * 2; 1 + 1}
+@
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Expressions}
+
+The value of an expression is the last evaluated statement:
+<<>>=
+# value of an expression
+{5 + 3; 4 * 2; 1 + 1}
+@
+The result has the visibility of the last evaluation
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Simple Expressions}
+
+We use braces \{ \} to group the statements of an expression:
+<<>>=
+# simple expression
+{5 + 3}
+@
+For simple expressions there is really no need to use braces.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Compound Expressions}
+
+\bbi
+  \item Compound expressions consist of multiple simple expressions
+  \item Compound expressions require braces
+  \item Simple expressions in a compound expression can be separated by semicolons or newlines
+\ei
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Compound Expressions}
+
+Simple expressions in a compound expression separated by semicolons:
+<<>>=
+# compound expression (just for demo purposes)
+# don't write code like this
+{mean(1:10); '3'; print("hello"); c(1, 3, 4)}
+@
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Compound Expressions}
+
+Simple expressions in a compound expression separated by newlines:
+<<>>=
+# compound expression
+{
+  mean(1:10)
+  '3'
+  print("hello")
+  c(1, 3, 4)
+}
+@
+
+You will use braces, but not like in this dummy example.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Compound Expressions}
+
+It is possible to have assignments within compound expressions:
+<<>>=
+{
+  x <- 4
+  y <- x^2
+  x + y
+}
+@
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Compound Expressions}
+
+The variables inside the braces can be used in later expressions
+<<>>=
+z <- {x <- 4; y <- x^2; x + y}
+x
+y
+z
+@
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Compound Expressions}
+
+<<>>=
+# simple expressions in newlines
+z <- {
+  x <- 4
+  y <- x^2
+  x + y}
+x
+y
+z
+@
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Using Expressions}
+
+\bb{Expressions are typically used in}
+\bbi
+  \item Functions
+  \item Flow control structures (e.g. \code{for} loop)
+\ei
+\eb
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Compound Expressions}
+
+Do not confuse a function call (having arguments in multiple lines) with a compound expression
+<<eval = FALSE>>=
+# this is NOT a compound expression
+plot(x = runif(10), y = rnorm(10), 
+     pch = 19, col = "#89F39A", cex = 2,
+     main = "some plot",
+     xlab = 'x', ylab = 'y')
+@
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\begin{center}
+\Huge{\hilit{Anatomy of a Function}}
+\end{center}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Anatomy of a function}
+
+{\hilit \code{function()}} allows us to create a function. It has the following structure:
+
+<<eval = FALSE>>=
+function_name <- function(arg1, arg2, etc)
+{
+  expression_1
+  expression_2
+  ...
+  expression_n
+}
+@
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Anatomy of a function}
+
+\bi
+  \item Generally we will give a name to a function
+  \item A function takes one or more inputs (or none), known as as \textit{arguments}
+  \item The expressions forming the operations comprise the body of the function
+  \item Simple expression doesn't require braces
+  \item Compound expressions are surround by braces
+  \item Functions return a single \textit{value}
+\ei
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Function example}
+
+A function that squares its argument:
+<<>>=
+square <- function(x) {
+  x^2
+}
+@
+
+\pause
+\bi
+  \item the function's name is {\hilit \code{"square"}}
+  \item it has one argument {\hilit \code{x}}
+  \item the function's body consists of one simple expression
+  \item it returns the value {\hilit \code{x * x}}  
+\ei
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Function example}
+
+It works like any other function in R:
+<<>>=
+square(10)
+@
+
+In this case, \code{square()} is also vectorized
+<<>>=
+square(1:5)
+@
+Why is \code{square()} vectorized?
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Function example}
+
+Functions with a body consisting of a simple expression can be written with no braces (in one single line!):
+<<>>=
+square <- function(x) x * x
+
+square(10)
+@
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{}
+
+If the body of a function is a compund expression we use braces:
+<<>>=
+sum_sqr <- function(x, y) {
+  xy_sum <- x + y
+  xy_ssqr <- (xy_sum)^2
+  list(sum = xy_sum, 
+       sumsqr = xy_ssqr)
+}
+
+sum_sqr(3, 5)
+@
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Function example}
+
+Once defined, functions can be used in other function definitions:
+<<>>=
+sum_of_squares <- function(x) {
+  sum(square(x))
+}
+
+sum_of_squares(1:5)
+@
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Area of a Rectangle}
+
+A function which, given the values $l$ (length) and $w$ (width) computes the value $l \times w$
+<<>>=
+area_rect <- function(l, w) {
+  l * w
+}
+@
+\bi
+  \item The formal arguments of the function are \code{l} and \code{w}
+  \item The body of the function consists of the simple expression \code{l * w}
+  \item The function has been assigned the name \code{"area\_rect"}
+\ei
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Nested Functions}
+
+We can also define a function inside another function:
+<<>>=
+getmax <- function(a) {
+  maxpos <- function(u) {
+    which.max(u)
+  }
+  list(position = maxpos(a),
+       value = max(a))
+}
+
+getmax(c(2, -4, 6, 10, pi))
+@
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Function names}
+
+\bb{Different ways to name functions}
+\bi
+  \item \code{squareroot()}
+  \item \code{SquareRoot()}
+  \item \code{squareRoot()}
+  \item \code{square.root()}
+  \item \code{square\_root()}
+\ei
+\eb
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Function names}
+
+\bb{Invalid names}
+\bi
+  \item \code{5quareroot()}: cannot begin with a number
+  \item \code{\_sqrt()}: cannot begin with an underscore
+  \item \code{square-root()}: cannot use hyphenated names
+\ei
+\eb
+
+\bigskip
+In addition, avoid using an already existing name, e.g. \code{sqrt()}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\begin{center}
+\Huge{\hilit{Function Output}}
+\end{center}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Function output}
+
+\bbi
+  \item The body of a function is an expression
+  \item Remember that every expression has a value
+  \item Hence every function has a value
+\ei
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Function output}
+
+The value of a function can be established in two ways:
+\bi
+  \item As the last evaluated simple expression (in the body)
+  \item An explicitly \textbf{returned} value via {\hilit \code{return()}}
+\ei
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{The \code{return()} command}
+
+Sometimes the \code{return()} command is included to explicitly indicate the output of a function:
+
+<<>>=
+add <- function(x, y) {
+  z <- x + y
+  return(z)
+}
+
+add(2, 3)
+@
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{The \code{return()} command}
+
+If no \code{return()} is present, then R returns the last evaluated expression:
+
+\begin{columns}[t]
+\begin{column}{0.45\textwidth}
+
+<<>>=
+# output with return()
+add <- function(x, y) {
+  z <- x + y
+  return(z)
+}
+
+add(2, 3)
+@
+\end{column}
+
+\begin{column}{0.45\textwidth}
+<<>>=
+# output without return()
+add <- function(x, y) {
+  x + y
+}
+
+add(2, 3)
+@
+\end{column}
+\end{columns}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{The \code{return()} command}
+
+Depending on what's returned or what's the last evaluated expression, just calling a function might not print anything:
+
+\begin{columns}[t]
+\begin{column}{0.45\textwidth}
+<<>>=
+# nothing is printed
+add <- function(x, y) {
+  z <- x + y
+}
+
+add(2, 3)
+@
+\end{column}
+
+\begin{column}{0.45\textwidth}
+<<>>=
+# output printed
+add <- function(x, y) {
+  z <- x + y
+  return(z)
+}
+
+add(2, 3)
+@
+\end{column}
+\end{columns}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{The \code{return()} command}
+
+Here we call the function and assign it to an object. The last evaluated expression has the same value in both cases:
+
+\begin{columns}[t]
+\begin{column}{0.45\textwidth}
+<<>>=
+# nothing is printed
+add <- function(x, y) {
+  z <- x + y
+}
+
+a1 <- add(2, 3)
+a1
+@
+\end{column}
+
+\begin{column}{0.45\textwidth}
+<<>>=
+# output printed
+add <- function(x, y) {
+  z <- x + y
+  return(z)
+}
+
+a2 <- add(2, 3)
+a2
+@
+\end{column}
+\end{columns}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{The \code{return()} command}
+
+If no \code{return()} is present, then R returns the last evaluated expression:
+
+\begin{columns}[t]
+\begin{column}{0.45\textwidth}
+<<eval = FALSE>>=
+add1 <- function(x, y) {
+  x + y
+}
+
+add2 <- function(x, y) {
+  z <- x + y
+  z
+}
+@
+\end{column}
+
+\begin{column}{0.45\textwidth}
+<<eval=FALSE>>=
+add3 <- function(x, y) {
+  z <- x + y
+}
+
+add4 <- function(x, y) {
+  z <- x + y
+  return(z)
+}
+@
+\end{column}
+\end{columns}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{The \code{return()} command}
+
+\code{return()} can be useful when the output may be obtained in the middle of the function's body
+
+\begin{columns}[t]
+\begin{column}{0.55\textwidth}
+<<>>=
+f <- function(x, y, add = TRUE) {
+  if (add) {
+    return(x + y)
+  } else {
+    return(x - y)
+  }
+}
+@
+\end{column}
+
+\begin{column}{0.35\textwidth}
+<<>>=
+f(2, 3, add = TRUE)
+f(2, 3, add = FALSE)
+@
+\end{column}
+\end{columns}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{\code{return()} versus \code{print()}}
+
+Often, R beginners use the function \code{print()} to indicate the output
+of a function:
+
+<<>>=
+add <- function(x, y) {
+  z <- x + y
+  print(z)
+}
+
+add(2, 3)
+@
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{\code{return()} versus \code{print()}}
+
+\bbi
+  \item The function \code{print()} is a \textbf{generic} method in R.
+  \item This meeans that \code{print()} has a different behavior depending on
+  its input
+  \item Unless you want to print intermediate results while the function is
+  being executed, there is no need to return the ouput via \code{print()}
+\ei
+<<>>=
+add <- function(x, y) {
+  z <- x + y
+  z  # no need to use print()
+}
+
+add(2, 3)
+@
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\begin{center}
+\Huge{\hilit{Function Arguments}}
+\end{center}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Function arguments}
+
+Functions can have any number of arguments (even zero arguments)
+<<>>=
+# function with 2 arguments
+add <- function(x, y) x + y
+
+# function with no arguments
+hi <- function() print("Hi there!")
+
+hi()
+@
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Arguments}
+
+Arguments can have default values
+<<>>=
+hey <- function(x = "") {
+  cat("Hey", x, "\nHow is it going?")
+}
+
+hey()
+hey("Gaston")
+@
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Arguments with no default values}
+
+If you specify an argument with no default value, you must give it a value everytime you call the function, otherwise you'll get an error:
+<<>>=
+sqr <- function(x) {
+  x^2
+}
+
+sqr()
+@
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Arguments with no default values}
+
+Sometimes we don't want to give default values, but we also don't want to cause an error. We can use {\hilit \code{missing()}} to see if an argument is missing:
+
+\begin{columns}[t]
+\begin{column}{0.5\textwidth}
+<<>>=
+abc <- function(a, b, c = 3) {
+  if (missing(b)) {
+    result <- a * 2 + c
+  } else {
+    result <- a * b + c
+  }
+  result
+}
+@
+\end{column}
+
+\begin{column}{0.4\textwidth}
+<<>>=
+abc(1)
+
+abc(1, 4)
+@
+\end{column}
+\end{columns}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Arguments with no default values}
+
+You can also set an argument value to \code{NULL} if you don't want to specify a default value:
+<<eval=FALSE>>=
+abcd <- function(a, b = 2, c = 3, d = NULL) {
+  if (is.null(d)) {
+    result <- a * b + c
+  } else {
+    result <- a * b + c * d
+  }
+  result
+}
+@
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{More arguments}
+
+<<fig.width=3, fig.height=3, out.width='.4\\linewidth', out.height='.4\\linewidth', fig.align='center'>>=
+# arguments with and without default values
+myplot <- function(x, y, col = "#3488ff", pch = 19) {
+  plot(x, y, col = col, pch = pch)
+}
+
+myplot(1:5, 1:5)
+@
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{More arguments}
+
+<<eval = FALSE>>=
+# arguments with and without default values
+myplot <- function(x, y, col = "#3488ff", pch = 19) {
+  plot(x, y, col = col, pch = pch)
+}
+@
+
+\bi
+  \item \code{x} and \code{y} have no default values
+  \item \code{col} and \code{pch} have default values (but they can be changed)
+\ei
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{More arguments}
+
+<<fig.width=3, fig.height=3, out.width='.5\\linewidth', out.height='.5\\linewidth', fig.align='center'>>=
+# changing default arguments
+myplot(1:10, 10:1, col = "#994352", pch = 18)
+@
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\begin{center}
+\Huge{\hilit{Writing Functions}}
+\end{center}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Writing Functions}
+
+How to write functions?
+\bi
+  \item Always start simple with test toy-values
+  \item Work first on what will be the body of the function
+  \item Check out each step of the way
+  \item Don't try to do much at once
+  \item Create the function (i.e. encapsulate the body) once everything works
+  \item Don't write long functions: write short / small functions (preferably less than 10 lines of code)
+\ei
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Variance Function Example}
+
+The sample variance is given by the following formula:
+$$
+var(x) = \frac{1}{n-1} \sum_{i=1}^{n} (x_i - \bar{x})^2
+$$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Variance Function Example}
+
+<<>>=
+# start simple
+x <- 1:10
+
+# get working code
+sum((x - mean(x))^2) / (length(x) - 1)
+
+# test it: compare it to var()
+var(1:10)
+@
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Variance Function Example}
+
+<<>>=
+# encapsulate your code
+variance <- function(x) {
+  sum((x - mean(x))^2) / (length(x) - 1)
+}
+
+# check that it works
+var(1:10)
+@
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Variance Function Example}
+
+<<>>=
+# then consider less simple cases
+variance (runif(10))
+
+var(rep(0, 10))
+
+var(c(1:9, NA))
+@
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Variance Function Example}
+
+<<>>=
+# adapt it gradually
+variance <- function(x, na.rm = FALSE) {
+  if (na.rm) {
+    x <- x[!is.na(x)]
+  }
+  sum((x - mean(x))^2) / (length(x) - 1)
+}
+
+variance(c(1:9, NA), na.rm = TRUE)
+@
+
+Don't worry about \code{if()} conditionals, we'll talk about them later.
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Writing Functions}
+
+When writing functions:
+\bi
+  \item Choose meaningful names of functions
+  \item Preferably a verb
+  \item Choose meaningful names of arguments
+  \item Think about the users (who will use the function)
+  \item Think about extreme cases
+  \item If a function is too long, maybe you need to split it
+\ei
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Names of functions}
+
+Avoid this:
+<<eval=FALSE>>=
+f <- function(x, y) {
+  x + y
+}
+@
+
+This is better
+<<eval=FALSE>>=
+add <- function(x, y) {
+  x + y
+}
+@
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Names of arguments}
+
+Give meaningful names to arguments:
+<<eval=FALSE>>=
+# Avoid this
+area_rect <- function(x, y) {
+  x * y
+}
+@
+
+This is better
+<<eval=FALSE>>=
+area_rect <- function(length, width) {
+  length * width
+}
+@
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Names of arguments}
+
+Even better: give default values (whenever possible)
+<<eval=FALSE>>=
+area_rect <- function(length = 1, width = 1) {
+  length * width
+}
+
+# default
+area_rect()
+
+# specifying argument values
+area_rect(length = 10, width = 2)
+@
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Meaningful Names to Arguments}
+
+Avoid this:
+<<eval=FALSE>>=
+# what does this function do?
+ci <- function(p, r, n, ti) {
+  p * (1 + r/p)^(ti * p)
+}
+@
+
+\pause
+This is better:
+<<eval=FALSE>>=
+# OK
+compound_interest <- function(principal, rate, periods, time) {
+  principal * (1 + rate/periods)^(time * periods)
+}
+@
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Meaningful Names to Arguments}
+
+<<eval=FALSE, size = 'scriptsize'>>=
+# names of arguments
+compound_interest <- function(principal = 1, rate = 0.01, 
+                              periods = 1, time = 1) 
+{
+  principal * (1 + rate/periods)^(time * periods)
+}
+
+compound_interest(principal = 100, rate = 0.05, 
+                  periods = 5, time = 1)
+
+compound_interest(rate = 0.05, periods = 5, 
+                  time = 1, principal = 100)
+
+compound_interest(rate = 0.05, time = 1, 
+                  periods = 5, principal = 100)
+@
+
+\end{frame}
+
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Describing functions}
+
+Also add a short description of what the arguments should be like. In this case, the description is outside the function
+<<eval=FALSE>>=
+# function for adding two numbers
+# x: number
+# y: number
+add <- function(x, y) {
+  x + y
+}
+@
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Describing functions}
+
+In this case, the description is inside the function
+<<eval=FALSE>>=
+add <- function(x, y) {
+  # function for adding two numbers
+  # x: number
+  # y: number
+  x + y
+}
+@
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[fragile]
+\frametitle{Describing functions}
+
+<<eval=FALSE>>=
+# description of arguments
+compound_interest <- function(principal = 1, rate = 0.01, 
+                              periods = 1, time = 1) 
+{
+  # principal = Principal Amount
+  # rate = Annual Nominal Interest Rate as a decimal
+  # time = Time Involved in years
+  # periods = number of compounding periods per unit time
+  principal * (1 + rate/periods)^(time * periods)
+}
+@
+
+\end{frame}
+
+%------------------------------------------------
+
+\end{document}
