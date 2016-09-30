@@ -1,5 +1,8 @@
 ---
-title: "HW03 - Stat 133, Fall 2016, Prof. Sanchez"
+title: "HW03 - Stat 133, Fall 2016"
+author:
+- Prof. Sanchez
+- LAB 201
 output: html_document
 urlcolor: blue
 ---
@@ -213,6 +216,15 @@ Your function:
 
 ```
 
+Test your `find_distance()` function with:
+```{r error = TRUE}
+# NOTE: Uncomment the following lines and then knit this file to check your function is working as required
+
+# p1 <- c(1, 10)
+# p2 <- c(10, 20)
+# find_distance(p1, p2)
+```
+
 #### Midpoint
 
 Write a function `find_midpoint()` that returns the midpoint between two given 
@@ -226,8 +238,17 @@ find_midpoint(p1, p2)
 
 Your function:
 ```{r, error = TRUE}
-# your find_distance() function
+# your find_midpoint() function
 
+```
+
+Test your `find_midpoint()` function with:
+```{r error = TRUE}
+# NOTE: Uncomment the following lines and then knit this file to check your function is working as required
+
+# p1 <- c(1, 10)
+# p2 <- c(10, 20)
+# find_midpoint(p1, p2)
 ```
 
 
@@ -248,6 +269,15 @@ Your function:
 
 ```
 
+Test your `find_slope()` function with:
+```{r error = TRUE}
+# NOTE: Uncomment the following lines and then knit this file to check your function is working as required
+
+# p1 <- c(1, 10)
+# p2 <- c(10, 20)
+# find_slope(p1, p2)
+```
+
 
 #### Intercept
 
@@ -266,6 +296,14 @@ Your function:
 
 ```
 
+Test your `find_intercept()` function with:
+```{r error = TRUE}
+# NOTE: Uncomment the following lines and then knit this file to check your function is working as required
+
+# p1 <- c(1, 10)
+# p2 <- c(10, 20)
+# find_intercept(p1, p2)
+```
 
 #### Line
 
@@ -288,6 +326,16 @@ Your function:
 
 ```
 
+Test your `find_line()` function with:
+```{r error = TRUE}
+# NOTE: Uncomment the following lines and then knit this file to check your function is working as required
+
+# p1 <- c(1, 10)
+# p2 <- c(10, 20)
+# eq <- find_line(p1, p2)
+# eq$intercept
+# eq$slope
+```
 
 #### Information about two given points
 
@@ -313,6 +361,19 @@ Your function:
 
 ```
 
+Test your `find_line()` function with:
+```{r error = TRUE}
+# NOTE: Uncomment the following lines and then knit this file to check your function is working as required
+
+# p1 <- c(1, 10)
+# p2 <- c(10, 20)
+
+# results <- info_points(p1, p2)
+# results$distance
+# results$midpoint
+# results$intercept
+# results$slope
+```
 
 Use the following code to create a plot that displays the given points, 
 the line, and the midpoint. Note that the title of the plot shows the line 
@@ -321,7 +382,7 @@ For instance, if the points are $p_1 = (-2, 4)$ and $p_2 = (1, 2)$, the plot
 may look like this (you should choose different points!):
 
 ```{r}
-# change these points and pass them to info_point()
+# change these points and pass them to info_points()
 p1 <- c(-2, 4)
 p2 <- c(1, 2)
 
@@ -337,36 +398,4 @@ points(-1/2, 3, cex = 1.5, pch = "x", col = "#E16868")
 # slope and intercept (here you should use the outputs of your function)
 abline(a = 8/3, b = -2/3, col = "#FF883477", lwd = 3) 
 title(main = expression(paste(y, ' = ', (-2/3) * x, ' + ', (8/3))))
-```
-
-
------
-
-## Data: Weekly California Gasoline Prices
-
-The data set for this problem has to do with weekly gasoline prices in California 
-during 2015. The data comes from the _U.S. Energy Information Administration_ 
-(EIA). 
-
-I've scrapped the data from 2015 and saved it in a csv file available in the
-github repository:
-
-[https://github.com/ucb-stat133/stat133-fall-2016/raw/master/data/raw-gas-prices-2015.csv](https://github.com/ucb-stat133/stat133-fall-2016/raw/master/data/raw-gas-prices-2015.csv)
-
-
-- `V1` corresponds to the month name
-- `V2`, `V4`, ..., `V10` contain the starting day of the week
-(some months have 4 weeks, and others have 5 weeks)
-- `V3`, `V5`, ..., `V11` contain the weekly gas prices
-
-The goal of this problem is to "reshape" the raw data set and create a new 
-data frame `gas_prices` with a simpler structure having the following columns:
-
-- `week` has the number of weeks (52 in total)
-- `date` corresponds to the starting dates of the week
-- `price` corresponds to the price for the associated date
-
-```{r error = TRUE}
-# your code to reshape raw-gas-prices-2015.csv
-
 ```
