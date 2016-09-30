@@ -1,0 +1,372 @@
+---
+title: "HW03 - Stat 133, Fall 2016, Prof. Sanchez"
+output: html_document
+urlcolor: blue
+---
+
+```{r echo = FALSE, message= FALSE}
+# necessary packages
+library(xtable)
+```
+
+The purpose of this assignment is to write simple functions, as well as 
+practicing using conditionals and loops in R. Please turn in 
+a physical copy of the knitted html file during lab, and submit both your 
+`.Rmd` and `.html` files to bCourses. Due Friday Oct-07.
+
+-----
+
+## Area of a circle
+
+For a given circle of radius $r$, the area $A$ is:
+$$
+A = \pi r^2
+$$
+
+Write a function `circle_area()` that calculates the area of a circle. This 
+function must take one argument `radius`. Give `radius` a default value of 1.
+The function should `stop()` if `radius` is negative. In the code chunk options,
+please include `error = TRUE` so that you don't get an error when knitting 
+the file.
+```{r, error = TRUE}
+# your circle_area() function
+
+```
+
+Test your function:
+```{r error = TRUE}
+# circle_area()
+
+# circle_area(radius = 3)
+
+# circle_area(radius = -2)
+```
+
+
+## Area of a cylinder
+
+For a given cylinder of radius $r$ and height $h$ the area $A$ is:
+$$
+A = 2 \pi r h + 2 \pi r^2
+$$
+
+Notice that the formula of the area of a cylinder includes the area of a 
+circle: $\pi r^2$. Write a function `cyl_area()`, that calls `circle_area()`, 
+to compute the area of a cylinder. 
+
+This function must take two arguments: `radius` and `height`. Give both 
+arguments a default value of 1. In addition, the function should stop if any
+of `radius` or `height` are negative.
+```{r, error = TRUE}
+# your cyl_area() function
+
+```
+
+Test your function
+```{r error = TRUE}
+# cyl_area()
+
+# cyl_area(radius = 2, height = 3)
+
+# cyl_area(radius = -2, height = 1)
+
+# cyl_area(radius = 2, height = -1)
+
+# cyl_area(radius = -2, height = -1)
+
+```
+
+
+## Volume of a cylinder
+
+For a given cylinder of radius $r$ and height $h$ the volume $V$ is:
+$$
+V = \pi r^2 h
+$$
+
+Write a function `cyl_volume()`, that calls `circle_area()`, to compute the 
+volume of a cylinder. This function must take two arguments: 
+`radius` and `height`. Give both arguments a default value of 1.
+
+```{r, error=TRUE}
+# your cyl_volume() function
+
+```
+
+Test your function:
+```{r error = TRUE} 
+# cyl_volume()
+
+# cyl_volume(radius = 3, height = 10)
+
+# cyl_volume(height = 10, radius = 3)
+```
+
+-----
+
+\newpage
+
+## Currency Converter
+
+Consider the exchange rates of one US dollar for the following currencies
+(source: XE currency table US dollar, 09-20-2016):
+
+| Currency         | name     | rate    |
+|------------------|----------|--------:|
+| US dollar        | `dollar` | 1.00    |
+| Euro             | `euro`   | 0.89    |
+| British pound    | `pound`  | 0.77    |
+| Japanese yen     | `yen`    | 101.69  |
+| Chinese yuan     | `yuan`   | 6.67    |
+| South Korean Won | `won`    | 1118.21 |
+| Indian rupee     | `rupee`  | 66.98   |
+| Mexican peso     | `peso`   | 19.82   |
+| Brazilian real   | `real`   | 3.25    |
+
+Write a function `exchange()` that converts from one currency to another. 
+This function takes three arguments:
+
+- `amount` is a positive numeric input
+- `from` is a character string indicating the name of a currency
+- `to` is a character string indicating the name of a currency
+
+Give these arguments default values of `amount = 1`, `from = "dollar"`, and 
+`to = "euro"`. 
+Inside `exchange()` you must declare a named vector with the given 
+exchange rates:
+```{r}
+exchange <- function(amount = 1, from = "dollar", to = "euro") {
+  # vector of dollar exchange rates
+  x <- c(
+    dollar = 1,
+    euro = 0.89,
+    pound = 0.77,
+    yen = 101.69,
+    yuan = 6.67,
+    won = 1118.21,
+    rupee = 66.98,
+    peso = 19.82,
+    real = 3.25)
+  
+  # write the rest of the code of your function
+  # ...
+}
+```
+
+- You can use any control flow structure: `if-else`, `switch()`, `for` loops, 
+`while`, `repeat`.
+- You can use any data structures inside `exchange()`: vectors, matrices, 
+data frames, lists, etc.
+- The output must be a numeric vector
+
+Test your `exchange()` function with:
+```{r error = TRUE}
+# exchange()
+
+# exchange(amount = 10, from = 'euro', to = 'peso')
+
+# exchange(amount = 20, from = 'yuan', to = 'pound')
+
+# exchange(amount = 30, from = 'rupee', to = 'won')
+```
+
+-----
+
+
+## Two Given Points
+
+Let $p_1$ and $p_2$ be two points with two coordinates: $p_1 = (x_1, y_1)$ and 
+$p_2 = (x_2, y_2)$.
+
+The distance $d$ between two points can be calculated with the formula:
+$$
+d = \sqrt{(x_2 - x_2)^2 + (y_2 - y_1)^2}
+$$
+
+The midpoint of the line segment between $p_1$ and $p_2$ can be found as:
+$$
+p = \left( \frac{x_1 + x_2}{2}, \frac{y_1 + y_2}{2} \right)
+$$
+
+The intercept $a$ and the slope $b$ of the line $y = a + bx$ connecting two 
+points $p_1$ and $p_2$ can be found as:
+$$
+b = \frac{y_2 - y_1}{x_2 - x_1}, \quad a = y_1 - b x_1
+$$
+
+
+#### Distance
+
+Write a function `find_distance()` that returns the distance between two given
+points. You should be able to call the function like this:
+```r
+# coordinates for point-1 and point-2
+p1 <- c(0, 0)
+p2 <- c(1, 1)
+
+find_distance(p1, p2)
+```
+
+Your function:
+```{r, error = TRUE}
+# your find_distance() function
+
+```
+
+#### Midpoint
+
+Write a function `find_midpoint()` that returns the midpoint between two given 
+points. You should be able to call the function like this:
+```r
+p1 <- c(0, 0)
+p2 <- c(1, 1)
+
+find_midpoint(p1, p2)
+```
+
+Your function:
+```{r, error = TRUE}
+# your find_distance() function
+
+```
+
+
+#### Slope
+
+Write a function `find_slope()` that returns the slope of the line connecting 
+two given points. You should be able to call the function like this:
+```r
+p1 <- c(0, 0)
+p2 <- c(1, 1)
+
+find_slope(p1, p2)
+```
+
+Your function:
+```{r, error = TRUE}
+# your find_slope() function
+
+```
+
+
+#### Intercept
+
+Write a function `find_intercept()` that returns the intercept of the line 
+connecting two given points. This function must internally use `find_slope()`
+```r
+p1 <- c(0, 0)
+p2 <- c(1, 1)
+
+find_intercept(p1, p2)
+```
+
+Your function:
+```{r, error = TRUE}
+# your find_intercept() function
+
+```
+
+
+#### Line
+
+Write a function `find_line()`. This function must use `find_slope()` and
+`find_intercept()`. The output should be a list with two named elements:
+`"intercept"` and `"slope"`, Here is how you should be able to use 
+`find_line()`:
+```r
+p1 <- c(0, 0)
+p2 <- c(1, 1)
+
+eq <- find_line(p1, p2)
+eq$intercept
+eq$slope
+```
+
+Your function:
+```{r, error = TRUE}
+# your find_line() function
+
+```
+
+
+#### Information about two given points
+
+Once you have the functions `find_distance()`, `find_midpoint()`, and 
+`find_line()`, write an overall function called `info_points()` that returns a 
+list with the distance, the midpoint, and the line's slope and intercept terms. 
+Here is how you should be able to use `info_points()`:
+
+```r
+p1 <- c(-2, 4)
+p2 <- c(1, 2)
+
+results <- info_points(p1, p2)
+results$distance
+results$midpoint
+results$intercept
+results$slope
+```
+
+Your function:
+```{r, error = TRUE}
+# your info_points() function
+
+```
+
+
+Use the following code to create a plot that displays the given points, 
+the line, and the midpoint. Note that the title of the plot shows the line 
+equation.
+For instance, if the points are $p_1 = (-2, 4)$ and $p_2 = (1, 2)$, the plot 
+may look like this (you should choose different points!):
+
+```{r}
+# change these points and pass them to info_point()
+p1 <- c(-2, 4)
+p2 <- c(1, 2)
+
+plot.new()
+# depending on your chosen points you may have to set different limits
+plot.window(xlim = c(-3, 3), ylim = c(0, 5))
+axis(side = 1)
+axis(side = 2, las = 1)
+points(p1[1], p1[2], cex = 1.5, col = "#FF8834", pch = 19)
+points(p2[1], p2[2], cex = 1.5, col = "#FF8834", pch = 19)
+# midpoint (here you should use the midpoint outputs of your function)
+points(-1/2, 3, cex = 1.5, pch = "x", col = "#E16868")  
+# slope and intercept (here you should use the outputs of your function)
+abline(a = 8/3, b = -2/3, col = "#FF883477", lwd = 3) 
+title(main = expression(paste(y, ' = ', (-2/3) * x, ' + ', (8/3))))
+```
+
+
+-----
+
+## Data: Weekly California Gasoline Prices
+
+The data set for this problem has to do with weekly gasoline prices in California 
+during 2015. The data comes from the _U.S. Energy Information Administration_ 
+(EIA). 
+
+I've scrapped the data from 2015 and saved it in a csv file available in the
+github repository:
+
+[https://github.com/ucb-stat133/stat133-fall-2016/raw/master/data/raw-gas-prices-2015.csv](https://github.com/ucb-stat133/stat133-fall-2016/raw/master/data/raw-gas-prices-2015.csv)
+
+
+- `V1` corresponds to the month name
+- `V2`, `V4`, ..., `V10` contain the starting day of the week
+(some months have 4 weeks, and others have 5 weeks)
+- `V3`, `V5`, ..., `V11` contain the weekly gas prices
+
+The goal of this problem is to "reshape" the raw data set and create a new 
+data frame `gas_prices` with a simpler structure having the following columns:
+
+- `week` has the number of weeks (52 in total)
+- `date` corresponds to the starting dates of the week
+- `price` corresponds to the price for the associated date
+
+```{r error = TRUE}
+# your code to reshape raw-gas-prices-2015.csv
+
+```
