@@ -92,5 +92,21 @@ Data set Mobile Food Schedule (stored in csv format) with the following variable
 
 Source: [https://data.sfgov.org/Economy-and-Community/Mobile-Food-Schedule/jjew-r69b](https://data.sfgov.org/Economy-and-Community/Mobile-Food-Schedule/jjew-r69b)
 
+-----
+
+### `womens-high-jump-records.csv`
+
+Data set of Women's High Jump World Records (as of Sep 2016), stored in csv format, 
+with the following variables:
+
+- `height` (record in meters)
+- `first` (first name)
+- `last` (last name)
+- `country` (name of country)
+- `day` (day of month, from record's date)
+- `month` (name of month, from record's date)
+- `year` (date year, from record's date)
+
+Source: [https://en.wikipedia.org/wiki/Women%27s_high_jump_world_record_progression](https://en.wikipedia.org/wiki/Women%27s_high_jump_world_record_progression)
 
 -----
