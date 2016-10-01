@@ -1098,7 +1098,7 @@ A
 \begin{frame}[fragile]
 \frametitle{Nested Loops}
 <<>>=
-# nested loops
+# obtaining reciprocal of those values < 6
 for (i in 1:nrow(A)) {
   for (j in 1:ncol(A)) {
     if (A[i,j] < 6) A[i,j] <- 1 / A[i,j] 

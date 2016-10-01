@@ -148,7 +148,7 @@ There are many times where you don't just want to execute one statement after an
 \hlstd{\}}
 \end{alltt}
 \begin{verbatim}
-## [1] 2.503114
+## [1] 0.05950904
 \end{verbatim}
 \end{kframe}
 \end{knitrout}
@@ -1443,7 +1443,7 @@ It is common to have nested loops
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
 \begin{alltt}
-\hlcom{# nested loops}
+\hlcom{# obtaining reciprocal of those values < 6}
 \hlkwa{for} \hlstd{(i} \hlkwa{in} \hlnum{1}\hlopt{:}\hlkwd{nrow}\hlstd{(A)) \{}
   \hlkwa{for} \hlstd{(j} \hlkwa{in} \hlnum{1}\hlopt{:}\hlkwd{ncol}\hlstd{(A)) \{}
     \hlkwa{if} \hlstd{(A[i,j]} \hlopt{<} \hlnum{6}\hlstd{) A[i,j]} \hlkwb{<-} \hlnum{1} \hlopt{/} \hlstd{A[i,j]}
