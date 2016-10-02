@@ -110,3 +110,35 @@ with the following variables:
 Source: [https://en.wikipedia.org/wiki/Women%27s_high_jump_world_record_progression](https://en.wikipedia.org/wiki/Women%27s_high_jump_world_record_progression)
 
 -----
+
+### `womens-high-jump-raw.csv`
+
+Raw data set of Women's High Jump World Records (as of Sep 2016), stored in csv format, 
+with the following variables:
+
+"Height","Athlete","Date","Place"
+
+- `Height` (record in meters)
+- `Athlete` (name of athlete and country)
+- `Date` (date in format %d %B %Y)
+- `Place` (name of city with numbers inside brackets)
+
+Source: [https://en.wikipedia.org/wiki/Women%27s_high_jump_world_record_progression](https://en.wikipedia.org/wiki/Women%27s_high_jump_world_record_progression)
+
+-----
+
+### `mens-high-jump-raw.csv`
+
+Raw data set of Men's High Jump World Records (as of Sep 2016), stored in csv format, 
+with the following variables:
+
+"Height","Athlete","Date","Place"
+
+- `Height` (record in meters)
+- `Athlete` (name of athlete and country)
+- `Venue` (name of city, and sometimes state)
+- `Date` (date in format %d %B %Y, with numbers inside brackets)
+
+Source: [https://en.wikipedia.org/wiki/Men%27s_high_jump_world_record_progression](https://en.wikipedia.org/wiki/Men%27s_high_jump_world_record_progression)
+
+-----
