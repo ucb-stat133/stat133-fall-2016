@@ -42,7 +42,7 @@ The data set has `r ncol(dat)` columns:
 
 - `r names(dat)[1]` is the height record in meters
 - `r names(dat)[2]` is the athlete's first name
-- `r names(dat)[3]` is the athlete's first name
+- `r names(dat)[3]` is the athlete's last name
 - `r names(dat)[4]` is the athlete's country
 - `r names(dat)[5]` is the day of month (record's date)
 - `r names(dat)[6]` is the name of month (record's date)
@@ -51,8 +51,8 @@ The data set has `r ncol(dat)` columns:
 
 ## Athlete's name
 
-The function `paste()`---and its sister `paste0()`---allows you form character
-strings by _pasting_ any number of vectors:
+The function `paste()`---and its sister `paste0()`---allows you to form
+character strings by _pasting_ any number of vectors:
 
 ```{r paste}
 paste("Go", "Bears", "!")
@@ -80,8 +80,8 @@ Take your vector `athlete_name`, and use `paste()` again, to create a vector
 
 As you can tell, the column `month` has the names of the months in abbreviated 
 format. But what if we want to get the full name? Interestingly, R comes
-with a built-in vector `month.name` that has the full English names of the
-months. So let's use `month.name` to write code that converts an abbreviated 
+with a built-in vector `month.name` that has the full names of the months
+ (in English). So let's use `month.name` to write code that converts an abbreviated 
 month into its full name.
 
 For testing purposes, let's consider one month, say `"Jan"`. 
@@ -147,18 +147,31 @@ Build a vector `full_month` with the full name:
 
 ## Record dates
 
-Take the vector `day`, `full_month`, and `year`, and `paste()` them in order to 
-build a vector `dates`: e.g. `"20 May 1922", "26 May 1923", ...`
+Take the vectors `full_month`, `day`, and `year`, and `paste()` them---in that
+order---to build a vector `record_dates` with the format `"May-20-1922", "May-26-1923", ...`
+
+```{r record-dates}
+# your vector record_dates
+```
+
+Your vector `record_dates` is just a character vector. But you can use it to 
+get a vector of class `"Date"`. Check the documentation of the function 
+`as.Date()` in order to reformat your vector `record_dates` with 
+`"%B-%d-%Y"` format:
+
+```{r as-record-date}
+# date formatting
+# complete as necessary: record_dates <- as.Date(record_dates, ...)
+```
+
+Apply `paste()` one more time to the vectors `day`, `full_month`, and `year`, in this order, to build a vector `dates`: e.g. `"20 May 1922", "26 May 1923", ...`
 
 ```{r dates}
 # your vector dates
 ```
 
-Your vector `dates` is just a character vector. But you can use it get a vector
-of class `"Date"`.
-
-Check the documentation of the function `as.Date()`. Use `as.Date()` to 
-reformat your vector `dates` with `"%d %B %Y"` format:
+Use `as.Date()` one more time to reformat your vector `dates` with 
+`"%d %B %Y"` format:
 
 ```{r as-date}
 # date formatting
@@ -191,8 +204,8 @@ Let's do some data manipulation and aggregation with the R package `"dplyr"`:
 library(dplyr)
 ```
 
+Begin by extracting the distinct (unique) countries:
 
-Extract distinct (unique) countries:
 ```{r unique-countries}
 # distinct countries
 ```
@@ -349,10 +362,16 @@ sapply_month <- sapply(dat$month, expand_month)
 # vector full_month
 full_month <- sapply(dat$month, expand_month)
 
+# vector record_dates
+record_dates <- paste(full_month, dat$day, dat$year, sep = "-")
+
+# reformat record_dates
+record_dates <- as.Date(record_dates, "%B-%d-%Y")
+
 # vector dates
 dates <- paste(dat$day, full_month, dat$year)
 
-# format date
+# reformat dates
 dates <- as.Date(dates, "%d %B %Y")
 
 # data frame "womens"
