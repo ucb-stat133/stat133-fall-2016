@@ -1,0 +1,104 @@
+---
+title: "Rmd Code Chunks Demo"
+author: "Shamindra Shrotriya"
+date: "October 12, 2016"
+output: html_document
+---
+
+## Background
+
+This is a quick interactive Rmd file used to explain the various `code chunk`
+options availible in R Markdown.
+
+It was inspired by the following great resources (please read them):
+
+*  [Karl Borman's Rmd tutorial](http://kbroman.org/knitr_knutshell/pages/Rmarkdown.html)
+*  [Yihue Xie's Rmd Chunk Options page](http://yihui.name/knitr/options/). 
+    *  _Fun Fact:_ Yihue created `knitr`!
+
+### R Markdown Code Chunks
+
+The general format of an Rmd code chunk is as shown below
+
+```
+{r chunk_name, chunk_options}
+```
+
+### Option 1: `include=FALSE`
+
+Here we just set up some knitr options we want the code to be 
+_evaluated_ but **neither code or output to be** _displayed_:
+
+```{r include_false_demo, include=FALSE}
+library(knitr)
+opts_knit$set(root.dir = '~/Downloads')
+```
+
+The code that was hidden in the final knit document was:
+
+```
+opts_knit$set(root.dir = '~/Downloads')
+```
+
+### Option 2: `results='hide'`
+
+Here we just set up some knitr options we want the code to be 
+_evaluated_ but **the output not to be** _displayed_:
+
+```{r results_hide_demo, results='hide'}
+summary(cars)
+```
+
+### Option 3: `echo=FALSE`
+
+Here we just set up some knitr options we want the code to be 
+_evaluated_ but **only the output to be** _displayed_:
+
+```{r echo_false_demo, echo=FALSE}
+plot(cars$speed)
+```
+
+### Option 4: `eval=FALSE`
+
+Here we just set up some knitr options we want the code to 
+**not be evaluated** but **only the code to be** _displayed_:
+
+```{r eval_false_demo, eval=FALSE}
+min(cars$dist)
+```
+
+We didn't get the minimum value of the `distance` variable in `cars` 
+dataframe displayed as expected here, just the R code command
+
+### Option 5: `cache=TRUE`
+
+Here if the code chunk remains unchanged between 'knitting', then it
+won't be re-run in the next knit i.e. RStudio will cache (save) the output
+from the previous knit and not re-run.
+
+This is used to **speed up the R Markdown development process** by reducing
+the time for each subsequent knit process.
+
+```{r cache_true_demo, cache=TRUE}
+max(cars$dist)
+```
+
+### Option 6: `warning=FALSE, message=FALSE`
+
+Here `warnings` and `messages` of `R` output are suppressed. By default they
+are not. In general you should not require this but there are some special 
+cases where it is useful.
+
+```{r warning_message_false_demo, warning=FALSE, message=FALSE}
+library(knitr)
+```
+
+### Option 7: `Preferred for STAT133`
+
+In `STAT133` we (i.e. Instructor and GSIs) want to see your code and output
+displayed in the knit html. So there should be no need to have `echo=FALSE`
+or `results='hide'` or `eval=FALSE`
+
+```
+{r chunk_name, cache=TRUE}
+```
