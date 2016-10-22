@@ -1,5 +1,5 @@
 ---
-title: "Stat 243, Fall 2016, Manipulating Strings"
+title: "Stat 133, Fall 2016, Manipulating Strings"
 author: "Gaston Sanchez"
 date: "October 3, 2016"
 output: 
