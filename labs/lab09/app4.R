@@ -1,53 +1,45 @@
 # Lab 9, Stat 133 Fall 2016, Prof. Sanchez
-# Shiny App version 4: Coin Tossing Experiment
+# Shiny App version 3: Drawing balls from boxes
 # Inputs:
-#   seed: random seed (for reproducibility purposes)
-#   times: number of tosses
-#   prob: probability of heads
+#   repetitions: number of repetitions
+#   threshold: threshold to selet box
+#   seed: random seed
 #
 # Outputs:
-#   chance plot
-#   data table with summary results
+#   frequency plot of number of blue balls
+#   table with frequencies
 
 library(shiny)
-
-
-# function that tosses a coin
-toss <- function(x = c('heads', 'tails'), times = 1, 
-                 prob = c(0.5, 0.5), seed = 123) {
-  set.seed(seed)
-  sample(x, size = times, replace = TRUE, prob = prob)
-}
-
+library(ggplot2)
 
 # Define UI for application
 ui <- fluidPage(
   
   # Application title
-  titlePanel("Coin Tossing Experiment"),
+  titlePanel("Drawing Balls Experiment"),
   
   # Sidebar  
   sidebarLayout(
     sidebarPanel(
-      numericInput("seed",
-                   label = "Random Seed",
-                   value = 1234),
-      sliderInput("times",
-                  label = "Number of tosses:",
+      sliderInput("repetitions",
+                  label = "Number of repetitions:",
                   min = 1,
-                  max = 1000,
+                  max = 5000,
                   value = 100),
-      sliderInput("prob",
-                  label = "Probability of heads:",
+      sliderInput("threshold",
+                  label = "Threshold for choosing boxes:",
                   min = 0,
                   max = 1,
-                  value = 0.5)
+                  value = 0.5),
+      numericInput("seed",
+                   "Choose a random seed",
+                   value = 12345)
     ),
     
     # Show a plot of the relative frequencies
     mainPanel(
-      plotOutput("chance_plot"),
-      dataTableOutput("summary_table")
+      plotOutput("freqs_plot"),
+      tableOutput("summary_table")
     )
   )
 )
@@ -56,42 +48,53 @@ ui <- fluidPage(
 # Define server logic required to draw the plot
 server <- function(input, output) {
   
-  tosses <- reactive(
-    toss(times = input$times, 
-         prob = c(input$prob, 1 - input$prob),
-         seed = input$seed)
-  )
-  proportions <- reactive(
-    cumsum(tosses() == "heads") / (1:input$times)
-  )
-
-  # Fill in the spot we created for a plot
-  output$chance_plot <- renderPlot({
+  blue_counts <- reactive({
+    # boxes as character vectors 
+    box1 <- c('blue', 'blue', 'red')
+    box2 <- c('blue', 'blue', 'red', 'red', 'red', 'white')
     
-    plot(1:input$times, proportions(), ylim = c(0, 1),
-         col = '#627fe2', type = 'l', lwd = 3,
-         xlab = 'Number of tosses',
-         ylab = 'Proportion of heads',
-         axes = FALSE, main = 'Percent Error')
-    abline(h = 0.5, col = '#888888aa', lwd = 3)
-    axis(side = 1)
-    axis(side = 2, las = 1)
+    size <- 4
+    drawn_balls <- matrix("", input$repetitions, size)
+    set.seed(input$seed)
+    for (r in 1:input$repetitions) {
+      aux <- runif(1)
+      if (aux > input$threshold) {
+        drawn_balls[r, ] <- sample(box1, size, replace = TRUE)
+      } else {
+        drawn_balls[r,] <- sample(box2, size)
+      }
+    }
+    
+    # number of blue balls in each repetition
+    blue_counts <- apply(drawn_balls, 1, function(x) sum(x == 'blue'))
+    blue_counts
   })
   
-  output$summary_table <- renderDataTable({
-    data.frame(
-      side = c('heads', 'tails'),
-      prob = c(input$prob, 1 - input$prob),
-      count = c(sum(tosses() == 'heads'), sum(tosses() == 'tails')),
-      prop = c(sum(tosses() == 'heads') / input$times, 
-                sum(tosses() == 'tails') / input$times)
+  # Fill in the spot we created for a plot
+  output$freqs_plot <- renderPlot({
+    # progression of relative frequencies
+    blue_freqs <- vector(mode = "list", length = 5)
+    for (num_blue in 0:4) {
+      temp_freqs <- cumsum(blue_counts() == num_blue) / (1:input$repetitions)
+      blue_freqs[[num_blue + 1]] <- temp_freqs
+    }
+
+    dat <- data.frame(
+      reps = rep(1:input$repetitions, 5),
+      freqs = unlist(blue_freqs),
+      number = factor(rep(0:4, each = input$repetitions))
     )
+    
+    ggplot(data = dat, aes(x = reps, y = freqs, group = number)) +
+      geom_path(aes(color = number)) +
+      ggtitle("Relative frequencies of number of blue balls")
+  })
+  
+  output$summary_table <- renderTable({
+    table(blue_counts()) / input$repetitions
   })
 }
 
 
 # Run the application 
 shinyApp(ui = ui, server = server)
-
-
-
