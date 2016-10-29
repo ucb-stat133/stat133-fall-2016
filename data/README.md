@@ -142,3 +142,20 @@ with the following variables:
 Source: [https://en.wikipedia.org/wiki/Men%27s_high_jump_world_record_progression](https://en.wikipedia.org/wiki/Men%27s_high_jump_world_record_progression)
 
 -----
+
+### `cpds.csv`
+
+Sample data from the "Comparative Political Data Set 1960-2010", stored in csv format,
+with the following variables:
+
+- `year` (period cover: 1960-2010)
+- `country` (country name)
+- `vturn` (voter turnout in election)
+- `outlays` (Total outlays (disbursements) of general government as a percentage of GDP)
+- `realgdpgr` (Growth of real GDP, percent change from previous year)
+- `unemp` (Unemployment rate, percentage of civilian labour force)
+
+Source: [http://www.cpds-data.org/index.php/data](http://www.cpds-data.org/index.php/data) by
+Klaus Armingeon, Christian Isler, Laura Knöpfel, David Weisstanner, Sarah Engler.
+
+
