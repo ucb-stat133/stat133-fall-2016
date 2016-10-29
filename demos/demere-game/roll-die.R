@@ -3,13 +3,14 @@ roll <- function(die = 1:6, times = 1) {
   sample(die, size = times, replace = TRUE)
 }
 
+
 # how many sixes in a vector of rolls
 num_sixes <- function(x) {
   sum(x == 6)
 }
 
 
-games <- 10
+games <- 1000
 wager <- 1
 set.seed(1234)
 
@@ -18,6 +19,11 @@ rolls <- roll(die = 1:6, times = 4 * games)
 outputs <- matrix(rolls, nrow = games, ncol = 4, byrow = TRUE)
 
 sixes <- apply(outputs, 1, num_sixes)
+
+apply(outputs, MARGIN = 2, mean)
+
+
+
 
 losses <- sum(sixes == 0)
 
