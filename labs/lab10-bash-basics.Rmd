@@ -1,0 +1,51 @@
+---
+title: "Stat 133, Fall 2016, Bash shell basics"
+author: "Gaston Sanchez"
+date: "October 3, 2016"
+output: 
+  pdf_document:
+    latex_engine: xelatex
+header-includes: \usepackage{float}
+fontsize: 11pt
+urlcolor: blue
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, error = TRUE)
+```
+
+## Command Line and Bash Shell
+
+In this lab you will be working with [Software Carpentry's](http://swcarpentry.github.io/) 
+__Unix Shell__ workshop.
+
+[http://swcarpentry.github.io/shell-novice/](http://swcarpentry.github.io/shell-novice/)
+
+1. Download the materials for the workshop: 
+
+[http://swcarpentry.github.io/shell-novice/data/shell-novice-data.zip](http://swcarpentry.github.io/shell-novice/data/shell-novice-data.zip)
+
+
+### House-keeping
+
+If you are using Windows, plase install Git:
+
+[https://git-scm.com/download/win](https://git-scm.com/download/win) 
+
+The installation for windows comes with "Git Bash", which will provide you with the Bash shell to work with the command line.
+
+If you are using Mac, go to `Applications`, then `Utilities`, and click
+on the `Terminal` application. This will open a terminal emulator with 
+the Bash shell.
+
+
+### Sections
+
+Go through sections 2, 3, and 4 of the workshop:
+
+2. Navigating Files and directories: [http://swcarpentry.github.io/shell-novice/02-filedir/](http://swcarpentry.github.io/shell-novice/02-filedir/)
+
+3. Working With Files and Directories: [http://swcarpentry.github.io/shell-novice/03-create/](http://swcarpentry.github.io/shell-novice/03-create/)
+
+4. Pipes and Filters: [http://swcarpentry.github.io/shell-novice/04-pipefilter/](http://swcarpentry.github.io/shell-novice/04-pipefilter/)
+
