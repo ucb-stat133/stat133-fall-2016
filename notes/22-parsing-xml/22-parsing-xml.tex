@@ -191,9 +191,6 @@ Remember to install \code{"XML"} first
 
 
 
-More info about \code{"XML"} at: \\
-{\scriptsize \url{http://www.omegahat.org/RSXML}}
-
 \end{frame}
 
 %------------------------------------------------
@@ -311,15 +308,14 @@ by default \code{xmlParse()} returns an object of class {\hilit \code{"XMLIntern
 
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: XML content does not seem to be XML: '../plant\_catalog.xml'}}\begin{alltt}
+\begin{alltt}
 \hlcom{# class }
 \hlkwd{class}\hlstd{(doc1)}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): object 'doc1' not found}}\end{kframe}
+\begin{verbatim}
+## [1] "XMLInternalDocument" "XMLAbstractDocument"
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 
 \end{frame}
@@ -362,20 +358,20 @@ the output is of class {\hilit \code{"XMLDocument"}} and is implemented as a hie
 
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: XML content does not seem to be XML: '../plant\_catalog.xml'}}\begin{alltt}
+\begin{alltt}
 \hlcom{# class }
 \hlkwd{class}\hlstd{(doc2)}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): object 'doc2' not found}}\begin{alltt}
+\begin{verbatim}
+## [1] "XMLDocument"         "XMLAbstractDocument"
+\end{verbatim}
+\begin{alltt}
 \hlkwd{is.list}\hlstd{(doc2)}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): object 'doc2' not found}}\end{kframe}
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 
 \end{frame}
@@ -401,15 +397,14 @@ As expected, the output is of class {\hilit \code{"XMLDocument"}}
 
 \begin{knitrout}\footnotesize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error: XML content does not seem to be XML: '../plant\_catalog.xml'}}\begin{alltt}
+\begin{alltt}
 \hlcom{# class }
 \hlkwd{class}\hlstd{(doc3)}
 \end{alltt}
-
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): object 'doc3' not found}}\end{kframe}
+\begin{verbatim}
+## [1] "XMLDocument"         "XMLAbstractDocument"
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 \eb
 

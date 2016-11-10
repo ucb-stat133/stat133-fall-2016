@@ -146,9 +146,6 @@ library(XML)
 library(XML)
 @
 
-More info about \code{"XML"} at: \\
-{\scriptsize \url{http://www.omegahat.org/RSXML}}
-
 \end{frame}
 
 %------------------------------------------------
@@ -251,7 +248,7 @@ by default \code{xmlParse()} returns an object of class {\hilit \code{"XMLIntern
 
 <<xmlparse_class, echo=c(3,4)>>=
 # parsing an xml document
-doc1 = xmlParse("../plant_catalog.xml")
+doc1 = xmlParse("plant_catalog.xml")
 # class 
 class(doc1)
 @
@@ -288,7 +285,7 @@ doc2 = xmlParse("http://www.xmlfiles.com/examples/plant_catalog.xml",
 
 <<xmlparse_Rlist, echo=c(3:5)>>=
 # parsing an xml document
-doc2 = xmlParse("../plant_catalog.xml", useInternalNodes = FALSE)
+doc2 = xmlParse("plant_catalog.xml", useInternalNodes = FALSE)
 # class 
 class(doc2)
 is.list(doc2)
@@ -313,7 +310,7 @@ As expected, the output is of class {\hilit \code{"XMLDocument"}}
 
 <<xmltreeparse_Rlist, echo=c(3:5)>>=
 # parsing an xml document
-doc3 = xmlTreeParse("../plant_catalog.xml")
+doc3 = xmlTreeParse("plant_catalog.xml")
 # class 
 class(doc3)
 @
