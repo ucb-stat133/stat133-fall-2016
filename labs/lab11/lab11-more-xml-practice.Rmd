@@ -1,0 +1,143 @@
+---
+title: "Stat 133, Fall 2016, More XML Practice"
+author: "Gaston Sanchez"
+date: "November 18, 2016"
+output: html_document
+---
+
+
+### Parsing XML content
+
+Load the package "XML"
+
+```{r}
+library(XML)
+```
+
+Get a copy of the _Faculty_ page of the Department of Statistics
+```{r, eval=FALSE}
+# faculty stats department
+url <- 'http://statistics.berkeley.edu/people/faculty'
+
+download.file(url, 'faculty.html')
+```
+
+Inspect the HTML source in your browser
+
+Let's parse the html document with `htmlParse()`:
+```{r}
+# parse html content
+# (output as an internal C-structure)
+doc <- htmlParse('~/Documents/faculty.html')
+
+class(doc)
+```
+
+Identify the node for each professor. Get the following content:
+
+- Name
+- Job title
+- Email
+- Office
+- website link
+
+-----
+
+Getting the Names
+```{r}
+name_nodes <- getNodeSet(doc, '//div[@class="views-field views-field-title"]')
+
+sapply(name_nodes, xmlValue)                       
+```
+
+Alternatively
+```{r}
+xpathSApply(doc, '//div[@class="views-field views-field-title"]', xmlValue)
+```
+
+-----
+
+Getting the Title
+```{r}
+title_nodes <- getNodeSet(doc, '//div[@class="views-field views-field-field-job-title"]')
+
+sapply(title_nodes, xmlValue)                       
+```
+
+Alternatively
+```{r}
+xpathSApply(
+  doc, 
+  '//div[@class="views-field views-field-field-job-title"]',
+  xmlValue)
+```
+
+-----
+
+Getting the email
+```{r}
+email_nodes <- getNodeSet(doc, '//div[@class="views-field views-field-field-email"]')
+
+sapply(email_nodes, xmlValue)                       
+```
+
+Alternatively
+```{r}
+xpathSApply(
+  doc, 
+  '//div[@class="views-field views-field-field-email"]',
+  xmlValue)
+```
+
+-----
+
+Getting the office
+```{r}
+office_nodes <- getNodeSet(
+  doc, 
+  '//div[@class="views-field views-field-field-location""]')
+
+sapply(office_nodes, xmlValue)                       
+```
+
+Alternatively
+```{r}
+xpathSApply(
+  doc, 
+  '//div[@class="views-field views-field-field-location"]',
+  xmlValue)
+```
+
+-----
+
+Getting the links
+```{r}
+link_nodes <- getNodeSet(
+  doc, 
+  '//div[@class="views-field views-field-title"]/h2/a')
+
+sapply(link_nodes, xmlAttrs)
+```
+
+Alternatively
+```{r}
+xpathSApply(
+  doc, 
+  '//div[@class="views-field views-field-title"]/h2/a',
+  xmlAttrs)
+```
+
+
+
+-----
+
+## Courses in the Department of Statistics
+
+Get the courses for the fall 2015
+[http://statistics.berkeley.edu/courses/fall-2015](http://statistics.berkeley.edu/courses/fall-2015)
+
+- Name
+- Section
+- Days and Time
+- Room
+- Instructor
