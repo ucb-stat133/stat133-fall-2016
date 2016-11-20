@@ -413,13 +413,18 @@ Elements to draw the chart ``manually''
 \frametitle{\code{starwarstoy.csv}}
 \begin{knitrout}\scriptsize
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
-
-
-{\ttfamily\noindent\color{warningcolor}{\#\# Warning in file(file, "{}rt"{}): cannot open file '/Users/gaston/Documents/stat133/stat133/datasets/starwarstoy.csv': No such file or directory}}
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in file(file, "{}rt"{}): cannot open the connection}}
-
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in eval(expr, envir, enclos): object 'starwars' not found}}\end{kframe}
+\begin{verbatim}
+##             name gender height weight    jedi species     weapon
+## 1 Luke Skywalker   male   1.72     77    jedi   human lightsaber
+## 2 Leia Skywalker female   1.50     49 no_jedi   human    blaster
+## 3 Obi-Wan Kenobi   male   1.82     77    jedi   human lightsaber
+## 4       Han Solo   male   1.80     80 no_jedi   human    blaster
+## 5          R2-D2   male   0.96     32 no_jedi   droid    unarmed
+## 6          C-3PO   male   1.67     75 no_jedi   droid    unarmed
+## 7           Yoda   male   0.66     17    jedi    yoda lightsaber
+## 8      Chewbacca   male   2.28    112 no_jedi wookiee  bowcaster
+\end{verbatim}
+\end{kframe}
 \end{knitrout}
 
 \end{frame}
@@ -429,10 +434,14 @@ Elements to draw the chart ``manually''
 \begin{frame}[fragile]
 \frametitle{Scatterplot}
 \begin{knitrout}\scriptsize
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}
+
+{\centering \includegraphics[width=.85\linewidth,height=.6\linewidth]{figure/sw_scatterplot-1} 
+
+}
 
 
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in ggplot(data = starwars): object 'starwars' not found}}\end{kframe}
+
 \end{knitrout}
 \end{frame}
 
@@ -502,9 +511,14 @@ User specifications
 \hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= starwars)} \hlopt{+}
   \hlkwd{geom_point}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= height,} \hlkwc{y} \hlstd{= weight,} \hlkwc{color} \hlstd{= jedi))}
 \end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=.8\linewidth,height=.5\linewidth]{figure/sw_scatterplot-1} 
+
+}
 
 
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in ggplot(data = starwars): object 'starwars' not found}}\end{kframe}
+
 \end{knitrout}
 \end{frame}
 
@@ -548,9 +562,14 @@ A graphic is a {\hilit \textbf{mapping}} from \textbf{data} to \textbf{aesthetic
 \hlkwd{ggplot}\hlstd{(}\hlkwc{data} \hlstd{= starwars)} \hlopt{+}
   \hlkwd{geom_point}\hlstd{(}\hlkwd{aes}\hlstd{(}\hlkwc{x} \hlstd{= height,} \hlkwc{y} \hlstd{= weight,} \hlkwc{color} \hlstd{= jedi))}
 \end{alltt}
+\end{kframe}
+
+{\centering \includegraphics[width=.8\linewidth,height=.5\linewidth]{figure/sw_scatterplot-1} 
+
+}
 
 
-{\ttfamily\noindent\bfseries\color{errorcolor}{\#\# Error in ggplot(data = starwars): object 'starwars' not found}}\end{kframe}
+
 \end{knitrout}
 \end{frame}
 
@@ -876,22 +895,6 @@ To increase the size of points, we \textbf{set} the aesthetic \code{size} to a c
 
 
 \end{knitrout}
-\end{frame}
-
-%------------------------------------------------
-
-\begin{frame}
-\frametitle{Test your knowledge}
-
-\bb{Identify the valid hex-color}
-\bbi
-  \item[A)] \code{"345677"}
-  \item[B)] \code{"\#1234567"}
-  \item[C)] \code{"\#AAAAAA"}
-  \item[D)] \code{"\#GG0033"}
-\ei
-\eb
-
 \end{frame}
 
 %------------------------------------------------

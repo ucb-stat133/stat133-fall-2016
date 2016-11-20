@@ -335,7 +335,7 @@ Elements to draw the chart ``manually''
 \begin{frame}[fragile]
 \frametitle{\code{starwarstoy.csv}}
 <<echo=FALSE, size='scriptsize'>>=
-starwars <- read.csv('~/Documents/stat133/stat133/datasets/starwarstoy.csv')
+starwars <- read.csv('starwarstoy.csv')
 
 starwars
 @
@@ -691,22 +691,6 @@ ggplot(data = mtcars, aes(x = mpg, y = hp)) +
 ggplot(data = mtcars, aes(x = mpg, y = hp)) +
   geom_point(size = 3, color = "#259ff8")
 @
-\end{frame}
-
-%------------------------------------------------
-
-\begin{frame}
-\frametitle{Test your knowledge}
-
-\bb{Identify the valid hex-color}
-\bbi
-  \item[A)] \code{"345677"}
-  \item[B)] \code{"\#1234567"}
-  \item[C)] \code{"\#AAAAAA"}
-  \item[D)] \code{"\#GG0033"}
-\ei
-\eb
-
 \end{frame}
 
 %------------------------------------------------
