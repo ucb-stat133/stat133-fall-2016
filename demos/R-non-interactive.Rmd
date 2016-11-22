@@ -1,0 +1,148 @@
+---
+title: "R in non-interactive mode"
+author: "Gaston Sanchez"
+date: "November 22, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+In this demo, we'll discuss how to invoke R, and execute R scripts in 
+non-interactive (i.e. from the command line).
+
+If you are using windows, you will probably have to modify the PATH environment
+variable. Follow the steps described in this post to modify your OS PATH:
+
+[http://www.howtogeek.com/118594/how-to-edit-your-system-path-for-easy-command-line-access/](http://www.howtogeek.com/118594/how-to-edit-your-system-path-for-easy-command-line-access/)
+
+Here's another post on how to modify your PATH environment variable:
+
+[http://johnatten.com/2014/12/07/adding-and-editing-path-environment-variables-in-windows/](http://johnatten.com/2014/12/07/adding-and-editing-path-environment-variables-in-windows/)
+
+
+## Launching R from the command line
+
+Open a bash shell:
+
+- if you use Mac, simply open the Terminal
+- if you use Windoes, open gitbash (or Cygwin if you have it)
+
+On the command line, type the following command:
+
+```bash
+R
+```
+
+If the PATH environment variable is correctly configured to know where R is
+installed in your computer, you should be able to get an R console in the
+command line.
+
+If you use Windows and gitbash, it is possible that typing `R` alone is not
+enough. Instead, you may have to run this command:
+
+```bash
+R --vanilla
+```
+
+If none of the previous commands were identified by your shell, then chances
+are that your PATH variable does not have the right path to find R in your 
+computer.
+
+
+### Tutorial resources
+
+I've written a tutorial that describes several options on how to work with 
+R in the non-interactive mode; the materials are available in the following
+github repository:
+
+[https://github.com/gastonstat/tutorial-R-noninteractive](https://github.com/gastonstat/tutorial-R-noninteractive)
+
+Please take time outside class to read the tutorial. Depending on your level
+of experience, it is possible that some or most of the tutorial's content
+are a bit technical (hopefully not). Typically, students with little command 
+line experience face a steep learning curve. But if you are seriously 
+considering a data analysis (or data science) formation, you should practice
+using the command line on a daily basis.
+
+
+## Basic examples
+
+Launching __R__ from the command line involves an interactive mode, similar to
+how you work with RStudio, although in a much more primitive and less user
+friendly way.
+
+The purpose is not to work interactively with R from the command line, but to
+work in non-interactive mode. This means running commands that will be pass to
+R, without really opening the R console.
+
+There are several ways to work with R in non-interactive mode. Perhaps the 
+most basic mode is with the `Rscript` command which has the follwing usage:
+
+```bash
+Rscript [options] [-e expr [-e expr2 ...] | file] [args]
+```
+
+- `options` are options beginning with double dash `--`. These can be any of 
+the standard `R` front-end.
+- `expr` (further expressions `expr2 ...`) refers to any R expression, and must be properly quoted
+- `file` is the name of the input file containing R commands
+- `args` are arguments to be passed to the script in `file`
+
+Here's a minimalist example to execute an R expression `"1 + 1"`:
+
+```bash
+Rscript -e "1 + 1"
+```
+
+
+You can run more than one expression using as many `-e` flags as
+expressions to be executed (make sure to properly quote them)
+```bash
+Rscript -e '2 + 3' -e '2 * 3' -e '2 ^ 3'
+```
+
+You can also execute a compound expression with multiple commands 
+separated with semicolons `;`
+```bash
+Rscript -e '2 + 3; 2 * 3; 2 ^ 3'
+```
+
+Here are some more examples that you can try:
+```bash
+# some math
+Rscript -e 'sqrt(81) + abs(-10) - sin(pi/2)'
+
+# some text
+Rscript -e 'sprintf("the girl spent $%s in books", 10)'
+
+# quadratic equation
+Rscript -e 'a=1; b=2; c=3; x=1; a*x^2 + b*x + c'
+
+# date
+Rscript -e 'paste("today is", substr(date(), 1, 10), substr(date(), 21, 24))'
+
+# time
+Rscript -e 'paste("the time is", substr(date(), 12, 19))'
+```
+
+`Rscript` can be used to execute files with R code. If the script file
+to be run does not require the user to pass arguments, then you can 
+run it like this:
+
+```bash
+Rscript myscript.R
+```
+
+Here's one example of how to render an `.Rmd` (R markdown) file from the
+command line (be careful with the quotes):
+
+```bash
+Rscript -e 'library(rmarkdown); render("document.Rmd")'
+```
+
+
+
