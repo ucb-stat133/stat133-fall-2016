@@ -16,11 +16,11 @@ htmls: $(HTMLS)
 
 
 %.pdf: %.Rmd
-	Rscript -e "library(rmarkdown); render('$<', output_format = "pdf_document")"
+	Rscript -e "library(rmarkdown); render('$<', output_format = 'pdf_document')"
 
 
 %.html: %.Rmd
-	Rscript -e "library(rmarkdown); render('$<', output_format = "html_document")"
+	Rscript -e "library(rmarkdown); render('$<', output_format = 'html_document')"
 
 
 clean:
